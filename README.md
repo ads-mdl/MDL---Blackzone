@@ -1,21 +1,99 @@
-# MDL---Blackzone
-### Modelagem de um sistema de gestão de informações para uma organização de pequeno porte
+# 💈 MDL — Black Zone Celso 5065
+> **Modelagem de um sistema de gestão de informações para uma organização de pequeno porte.**
 
-## Metadados
-- Felipe André Cruz Leite - RGM:48200310
-- Guilherme Fernando Alves da Silva - RGM:48183199
-- Richard Mattos Leite - RGM:48135291
-- Kauã Ferreira - RGM:48250139
-- Vitor da Silva Bonilha - RGM:48123005
-  
-## 1. Caracterização da Organização
-*(vale 7,5% — Dimensão Conceitual)*
+---
+## 👥 Integrantes do Projeto
 
-- **Blackzone - Barbearia:** *A Blackzone é uma franquia de barbearias que surgiu durante a pandemia (Covid 19), tendo nascida das mentes de dois sócios sonhadores.*
-- **Contexto e porte:** **
-- **Problemas e necessidades identificados:** *qual é a "crise operacional" — o que está desorganizado hoje (planilhas soltas, papel, falta de controle de estoque/doações/cadastros, etc.)?*
-- **Justificativa da escolha:** *por que essa organização foi escolhida e por que ela é um bom caso para o projeto?*
-- **Evidências da organização:** *comprove que a organização existe e que o grupo teve acesso a ela — ex.: fotos do local/da visita, link da organização no Google (Google Maps/Google Meu Negócio, site, rede social), endereço completo e forma de contato (telefone, e-mail, responsável pela organização).*
+| Nome Completo | RGM |
+| :--- | :--- |
+| Felipe André Cruz Leite | **48200310** |
+| Guilherme Fernando Alves da Silva | **48183199** |
+| Richard Mattos Leite | **48135291** |
+| Kauã Ferreira | **48250139** |
+| Vitor da Silva Bonilha | **48123005** |
+
+---
+
+## 🏢 1. Caracterização da Organização
+
+A organização escolhida para este estudo de caso é a **Barbearia Black Zone Celso 5065**, uma unidade franqueada da rede Black Zone.
+
+> 📍 **Localização:** Bairro Tatuapé, São Paulo - SP  
+> 📅 **Fundação:** Ano de 2020 (durante a pandemia de COVID-19)  
+> 💼 **Natureza:** Estabelecimento privado, com fins lucrativos  
+> 🎯 **Foco do Projeto:** Gestão local e exclusiva desta unidade (clientes, barbeiros, serviços, agendamentos, pagamentos e cancelamentos).
+
+### 🕒 Contexto e Operação
+
+O estabelecimento atua na prestação de serviços de barbearia e cuidados estéticos masculinos, voltado principalmente ao público jovem. O catálogo inclui desde cortes clássicos e modernos até cuidados com cabelo afro, barboterapia e estética facial (disponíveis de forma avulsa ou em pacotes combinados).
+
+- **Funcionamento:** segunda-feira a sábado, das 09h às 21h. Aos domingos, a unidade permanece fechada.
+- **Agendamentos:** realizados pelo site Trinks, WhatsApp ou presencialmente.
+- **Encaixes:** atendimento presencial de clientes sem agendamento prévio, conforme a disponibilidade de horários dos barbeiros.
+- **Serviços avulsos:** preços a partir de R$ 50,00.
+- **Pacotes:** combinação de serviços com preço próprio.
+- **Formas de pagamento:** Pix, cartão de crédito, cartão de débito ou dinheiro, utilizando uma única forma por atendimento.
+
+### 👥 Equipe e Volume de Atendimentos
+
+| Informação | Caracterização |
+| :--- | :--- |
+| **Quantidade de barbeiros** | 7 profissionais |
+| **Demais profissionais** | Recepcionista, responsável pela recepção dos clientes |
+| **Média individual de atendimentos** | Aproximadamente 12 atendimentos por barbeiro por dia |
+| **Volume diário estimado da unidade** | Cerca de 84 atendimentos quando os sete barbeiros trabalham no mesmo dia |
+
+### ⚠️ Problemas e Necessidades Identificados
+
+#### Problemas potenciais a validar na pesquisa de campo
+
+- **Conflitos de horários:** agendamentos recebidos pelo WhatsApp ou presencialmente podem gerar sobreposição quando não são registrados imediatamente na agenda do barbeiro.
+
+- **Falhas no registro de cancelamentos:** cancelamentos comunicados por diferentes canais podem demorar a ser atualizados, mantendo horários ocupados mesmo após a desistência do cliente.
+
+- **Falta de clareza sobre os pacotes:** informações incompletas sobre os serviços incluídos e seus preços podem gerar dúvidas no atendimento e divergências na cobrança.
+
+- **Tempo insuficiente reservado para os serviços:** desconsiderar a duração estimada dos procedimentos pode causar atrasos nos atendimentos seguintes.
+
+- **Ausência de registro dos encaixes:** atendimentos sem agendamento prévio podem deixar de ser registrados, dificultando a identificação do cliente, do barbeiro responsável e dos serviços prestados.
+
+#### Necessidades do sistema
+
+Com base no DER adotado, o sistema proposto deve permitir:
+
+- **Manter os dados da unidade:** registrar nome, endereço, WhatsApp e horários de funcionamento.
+
+- **Organizar os cadastros de clientes e barbeiros:** manter os dados de identificação e contato, registrar a característica de barbeiro não fumante e relacionar os profissionais aos serviços que realizam.
+
+- **Registrar agendamentos e encaixes:** armazenar data, horários de início e término, tipo de atendimento e canal utilizado, vinculando cada registro à unidade, ao cliente e a um único barbeiro.
+
+- **Organizar a agenda dos profissionais:** evitar sobreposição de horários para o mesmo barbeiro e registrar os encaixes pelo canal presencial, respeitando o funcionamento da unidade.
+
+- **Gerenciar serviços e pacotes:** manter descrições, categorias, durações estimadas e preços, registrar a composição dos pacotes e associar um ou mais serviços ou pacotes a cada agendamento.
+
+- **Registrar pagamentos:** armazenar, no agendamento, a data, o horário, o valor pago e a forma utilizada, considerando até um pagamento e uma única forma de pagamento por agendamento.
+
+- **Registrar cancelamentos:** armazenar, no agendamento, a data, o horário e o canal utilizado (site Trinks, WhatsApp ou presencial), considerando o prazo previsto nas regras do modelo.
+
+
+### ✅ Justificativa da Escolha
+
+Escolhemos a Black Zone Celso 5065 porque já somos clientes da unidade e conseguimos a autorização do gerente Dante para realizar a pesquisa. Isso facilita o contato com a equipe e nos permite conhecer melhor como a barbearia funciona.
+
+A rotina do estabelecimento envolve agendamentos, escolha de serviços, pagamentos e cancelamentos. São situações que podemos relacionar ao que estamos aprendendo em aula, identificando quais informações precisam ser registradas e como elas se conectam.
+
+Optamos por entrevistar apenas essa unidade para conseguir analisar os processos com mais detalhe, visto a proximidade com a faculdade e facilidade de locomoção do grupo, além de manter o trabalho viável. A pesquisa de campo ajudou a esclarecer as regras do atendimento e a construir um DER que represente a rotina da barbearia.
+
+**Acesso à organização:** Os integrantes do grupo são clientes da franquia e da unidade. A realização da pesquisa de campo foi autorizada pelo gerente Dante.
+
+### 📸 Evidências da Organização
+
+- **Endereço:** Avenida Celso Garcia, nº 5065, Tatuapé, São Paulo/SP, CEP 03064-000.
+- **Telefone divulgado:** (11) 2935-2008.
+- **Referência pública:** [Página oficial da rede Black Zone](https://www.barbeariablackzone.com/).
+- **Responsável entrevistado e sua função:** Pedro, Barbeiro.
+- **Data da entrevista:** 09/09/2026.
+- **Registros da visita:** (a gnt tem q colocar o link das fotos aq)
 
 ---
 
