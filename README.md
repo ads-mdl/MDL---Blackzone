@@ -170,17 +170,7 @@ Para cada entidade identificada, liste:
 ---
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
-*(vale 20% — é o item de maior peso da entrega)*
 
-- Anexe o DER (em imagem).
-- O diagrama deve representar corretamente:
-  - Entidades
-  - Atributos
-  - Relacionamentos
-  - **Cardinalidades**
-- O modelo deve ser **consistente** e já demonstrar potencial de **escalabilidade e integração** (pensando nas próximas etapas do projeto).
-
----
 
 ## 8. Justificativa Técnica
 *(vale 7,5% — sozinho, é o subcritério de maior peso dentro da Dimensão Conceitual)*
