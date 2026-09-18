@@ -98,10 +98,30 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 ---
 
 ## 2. Processos de Negócio
-*(vale 10% — Dimensão Procedimental)*
 
-- **Principais processos mapeados:** *ex.: cadastro de clientes/beneficiários/fiéis, controle de estoque ou doações, vendas ou arrecadação, emissão de pedidos ou solicitações, entregas ou distribuição, organização de eventos/rituais/mutirões.*
-- **Fluxogramas:** (Opcional) *represente visualmente pelo menos os processos-chave (imagens anexadas). Deve ficar claro o fluxo de cada processo e como eles se integram entre si.*
+### Principais processos mapeados
+
+- **Cadastro e atualização de clientes:** registrar nome, telefone e, opcionalmente, e-mail. Antes de realizar um novo cadastro, verificar se o cliente já está registrado para evitar duplicidade.
+
+- **Organização dos dados da unidade e dos barbeiros:** manter os dados da unidade e seus horários de funcionamento, além dos cadastros dos barbeiros, dos serviços que realizam e da informação sobre serem ou não fumantes.
+
+- **Cadastro de serviços e pacotes:** registrar os serviços oferecidos, suas descrições, categorias, preços e durações estimadas. Para os pacotes, informar quais serviços estão incluídos e o preço da combinação.
+
+- **Agendamento de atendimentos:** receber a solicitação pelo Trinks, WhatsApp ou presencialmente, identificar o cliente e os serviços desejados e verificar um horário disponível com um barbeiro que realize os procedimentos. Registrar a data, os horários de início e término e o canal utilizado, respeitando o funcionamento da unidade e evitando sobreposição de horários.
+
+- **Registro de encaixes:** verificar a disponibilidade para atender clientes que chegam sem agendamento prévio. Quando houver horário, registrar o atendimento como encaixe, pelo canal presencial, vinculando o cliente, o barbeiro e os serviços escolhidos.
+
+- **Realização do atendimento:** o barbeiro responsável realiza os serviços vinculados ao agendamento, incluindo os procedimentos que compõem os pacotes. Um único barbeiro realiza todo o atendimento.
+
+- **Registro do pagamento:** registrar o valor recebido, a data, o horário e a forma de pagamento no respectivo agendamento. O pagamento pode ser feito por Pix, cartão de crédito, cartão de débito ou dinheiro, utilizando uma única forma por atendimento.
+
+- **Registro do cancelamento:** receber a solicitação pelo Trinks, WhatsApp ou presencialmente e verificar o prazo previsto nas regras da unidade. Quando o cancelamento for aceito, registrar a data, o horário e o canal utilizado no agendamento, liberando o horário para outro atendimento.
+
+### Integração entre os processos
+
+O cadastro do cliente permite identificá-lo nos agendamentos e encaixes. O catálogo de serviços e pacotes informa os procedimentos disponíveis, seus preços e a duração estimada, enquanto o cadastro dos barbeiros permite selecionar o profissional responsável.
+
+O agendamento reúne essas informações e vincula o cliente, a unidade, o barbeiro e os serviços escolhidos. Após o atendimento, o pagamento é registrado nesse mesmo agendamento. Caso haja cancelamento, seus dados também ficam associados ao registro, permitindo acompanhar o que aconteceu com o horário reservado.
 
 ---
 
