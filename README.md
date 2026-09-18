@@ -170,7 +170,7 @@ Para cada entidade identificada, liste:
 ---
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
-
+DER-Barbearia-Black-Zone-Celso-5065.pdf
 
 ## 8. Justificativa Técnica
 *(vale 7,5% — sozinho, é o subcritério de maior peso dentro da Dimensão Conceitual)*
