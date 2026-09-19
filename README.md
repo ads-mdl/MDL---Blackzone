@@ -145,7 +145,6 @@ O agendamento reúne essas informações e vincula o cliente, a unidade, o barbe
 ---
 
 ## 5. Dicionário de Dados Conceitual (Preliminar)
-*(vale 10% — Dimensão Procedimental - Segue o modelo do arquivo 02-03g_Exemplo_Dicionario_Dados.pdf)*
 
 Para cada entidade identificada, liste:
 
@@ -155,7 +154,7 @@ Para cada entidade identificada, liste:
 | *NM_CLIENTE* | *Nome Completo do cliente recepcionado ou agendado * | *Tipo Varchar(100). Obrigatório.* |
 | *DS_TELEFONE* | *Número de contato / WhatsApp do Cliente * | *Tipo Varchar(20). Opcional.* |
 | *DS_EMAIL* | *Endereço de E-mail do cliente * | *Tipo Varchar(100). Opicional.* |
-| *VL_LIMITE_ORCAMENTO* | *Análise de orçamento disponível no bolso do cliente* | *Tipo Númeric(10,2). Opcional.* |
+| *VL_LIMITE_ORCAMENTO* | *Análise de orçamento disponível no bolso do cliente relacionado a corte e outros serviços* | *Tipo Númeric(10,2). Opcional.* |
 | *DS_PREFERENCIA_CORTE* | * Gostos, especificações e preferências do cliente definidos durante o atendimento* | *Tipo Text. Opcional* |
 | *IN_PENALIZADO_AUSENCIA* | *Indicador de Aplicação de penalidade por ausência sem aviso prévio* | *Tipo Boolean. Opcional* |
 
