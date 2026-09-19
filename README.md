@@ -151,7 +151,14 @@ Para cada entidade identificada, liste:
 
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
-| *nome do atributo* | *o que ele representa* | *se houver alguma regra (obrigatoriedade, valores possíveis, etc.)* |
+| *ID_CLIENTE* | *Código identificador único de cliente no sistema * | *Chave Primária(PK). Tipo Integer. Obrigatório.* |
+| *NM_CLIENTE* | *Nome Completo do cliente recepcionado ou agendado * | *Tipo Varchar(100). Obrigatório.* |
+| *DS_TELEFONE* | *Número de contato / WhatsApp do Cliente * | *Tipo Varchar(20). Opcional.* |
+| *DS_EMAIL* | *Endereço de E-mail do cliente * | *Tipo Varchar(100). Opicional.* |
+| *VL_LIMITE_ORCAMENTO* | *Análise de orçamento disponível no bolso do cliente* | *Tipo Númeric(10,2). Opcional.* |
+| *DS_PREFERENCIA_CORTE* | * Gostos, especificações e preferências do cliente definidos durante o atendimento* | *Tipo Text. Opcional* |
+| *IN_PENALIZADO_AUSENCIA* | *Indicador de Aplicação de penalidade por ausência sem aviso prévio* | *Tipo Boolean. Opcional* |
+
 
 *Mantenha o dicionário organizado e padronizado (mesmo formato de tabela para todas as entidades).*
 
@@ -170,7 +177,7 @@ Para cada entidade identificada, liste:
 ---
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
-https://github.com/ads-mdl/MDL---Blackzone/blob/main/DER-Barbearia-Black-Zone-Celso-5065.pdf
+
 
 ## 8. Justificativa Técnica
 *(vale 7,5% — sozinho, é o subcritério de maior peso dentro da Dimensão Conceitual)*
