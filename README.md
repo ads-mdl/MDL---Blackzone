@@ -144,7 +144,7 @@ O agendamento reúne essas informações e vincula o cliente, a unidade, o barbe
 
 ---
 
-## 5. Dicionário de Dados Conceitual (Preliminar)
+## 5. Dicionário de Dados Conceitual 
 
 Para cada entidade identificada, liste:
 
@@ -159,19 +159,25 @@ Para cada entidade identificada, liste:
 | *IN_PENALIZADO_AUSENCIA* | *Indicador de Aplicação de penalidade por ausência sem aviso prévio* | *Tipo Boolean. Opcional* |
 
 
-*Mantenha o dicionário organizado e padronizado (mesmo formato de tabela para todas as entidades).*
-
-**Atenção à privacidade:** se forem usados exemplos de valores para ilustrar os atributos, esses exemplos devem ser **fictícios** — não utilize dados reais de clientes, fiéis, beneficiários, doadores ou funcionários da organização (nomes, CPFs, contatos etc.), mesmo que tenham sido observados durante a pesquisa de campo. Os exemplos devem apenas ser **coerentes com as operações reais** observadas.
-
 ---
 
 ## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
-*(vale 7,5% na dimensão conceitual)*
 
-- **Entidades reconhecidas:** *liste e justifique brevemente cada uma.*
+
+| Entidade | Descrição |
+| :--- | :--- |
+| *UNIDADE* | *Representa a infraestrutura da franquia Black Zone e centraliza as regras de funcionamento local.* |
+| *CLIENTE* | *Armazena os dados dos consumidores atendidos por agendamento prévio ou encaixe.* |
+| *BARBEIRO* | *Armazena os dados dos profissionais responsáveis pela execução dos serviços, incluindo características como ser não fumante.* |
+| *SERVIçO* | *Representa os procedimentos avulsos de estética e cuidados oferecidos pela barbearia.* |
+| *PACOTE* | *Estrutura que agrupa dois ou mais serviços em uma oferta combinada com valor diferenciado.* |
+| *AGENDAMENTO* | *Entidade central do modelo. Representa tanto as reservas antecipadas quanto os encaixes em tempo real, conectando cliente, barbeiro e serviços.* |
+| *PAGAMENTO* | *Entidade fraca dependente de AGENDAMENTO, criada para registrar a liquidação financeira de um atendimento efetuado.* |
+| *CANCELAMENTO* | *Entidade fraca dependente de AGENDAMENTO, destinada a registrar desistências e liberar a agenda.* |
 - **Atributos e classificações:** *quais atributos pertencem a cada entidade.*
 - **Relacionamentos pertinentes:** *como as entidades se conectam.*
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
+
 
 ---
 
