@@ -164,19 +164,87 @@ Para cada entidade identificada, liste:
 ## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
 
 
-| Entidade | Descrição |
-| :--- | :--- |
-| *UNIDADE* | *Representa a infraestrutura da franquia Black Zone e centraliza as regras de funcionamento local.* |
-| *CLIENTE* | *Armazena os dados dos consumidores atendidos por agendamento prévio ou encaixe.* |
-| *BARBEIRO* | *Armazena os dados dos profissionais responsáveis pela execução dos serviços, incluindo características como ser não fumante.* |
-| *SERVIçO* | *Representa os procedimentos avulsos de estética e cuidados oferecidos pela barbearia.* |
-| *PACOTE* | *Estrutura que agrupa dois ou mais serviços em uma oferta combinada com valor diferenciado.* |
-| *AGENDAMENTO* | *Entidade central do modelo. Representa tanto as reservas antecipadas quanto os encaixes em tempo real, conectando cliente, barbeiro e serviços.* |
-| *PAGAMENTO* | *Entidade fraca dependente de AGENDAMENTO, criada para registrar a liquidação financeira de um atendimento efetuado.* |
-| *CANCELAMENTO* | *Entidade fraca dependente de AGENDAMENTO, destinada a registrar desistências e liberar a agenda.* |
-- **Atributos e classificações:** *quais atributos pertencem a cada entidade.*
-- **Relacionamentos pertinentes:** *como as entidades se conectam.*
-- **Restrições e políticas organizacionais aplicadas ao modelo.**
+| Entidade | Descrição | Atributos |
+| :--- | :--- | :--- |
+| *UNIDADE* | *Representa a infraestrutura da franquia Black Zone e centraliza as regras de funcionamento local.* | *ID_UNIDADE - NM_UNIDADE - DS_ENDERECO - DS_TELEFONE - HR_ABERTURA - HR_FECHAMENTO* |
+| *CLIENTE* | *Armazena os dados dos consumidores atendidos por agendamento prévio ou encaixe.* | *ID_CLIENTE - NM_CLIENTE - DS_TELEFONE - DS_EMAIL* |
+| *BARBEIRO* | *Armazena os dados dos profissionais responsáveis pela execução dos serviços, incluindo características como ser não fumante.* | *ID_BARBEIRO - NM_BARBEIRO - DS_TELEFONE - FL_NAO_FUMANTE* |
+| *SERVIÇO* | *Representa os procedimentos avulsos de estética e cuidados oferecidos pela barbearia.* | *ID_SERVICO - NM_SERVICO - DS_CATEGORIA - NR_DURACAO_MIN - VL_SERVICO* | 
+| *PACOTE* | *Estrutura que agrupa dois ou mais serviços em uma oferta combinada com valor diferenciado.* | *ID_PACOTE - NM_PACOTE - DS_PACOTE - VL_PACOTE* |
+| *AGENDAMENTO* | *Entidade central do modelo. Representa tanto as reservas antecipadas quanto os encaixes em tempo real, conectando cliente, barbeiro e serviços.* | *ID_AGENDAMENTO - DT_AGENDAMENTO - HR_AGENDAMENTO - HR_INICIO - HR_FIM_ESTIMADO - TP_ATENDIMENTO - DS_CANAL - ST_AGENDAMENTO* |
+| *PAGAMENTO* | *Entidade fraca dependente de AGENDAMENTO, criada para registrar a liquidação financeira de um atendimento efetuado.* | *ID_PAGAMENTO - DT_PAGAMENTO - HR_PAGAMENTO - VL_PAGO - TP_FORMA_PAGAMENTO* |
+| *CANCELAMENTO* | *Entidade fraca dependente de AGENDAMENTO, destinada a registrar desistências e liberar a agenda.* | *ID_CANCELAMENTO - DT_CANCELAMENTO - HR_CANCELAMENTO - DS_CANAL_CANC* |
+
+- **Relacionamentos pertinentes:**
+## 1. UNIDADE ↔ BARBEIRO (1 : N)
+- Regra de Negócio: A unidade possui vários barbeiros cadastrados, mas cada barbeiro trabalha em apenas uma unidade.
+- Como se conectam: A chave primária ID_UNIDADE da tabela UNIDADE entra como Chave Estrangeira (ID_UNIDADE) na tabela BARBEIRO.
+
+
+## 2. UNIDADE ↔ AGENDAMENTO (1 : N)
+- Regra de Negócio: A unidade sedia diversos agendamentos/encaixes ao longo do tempo.
+- Como se conectam: O ID_UNIDADE entra como Chave Estrangeira (ID_UNIDADE) na tabela AGENDAMENTO.
+
+
+## 3. CLIENTE ↔ AGENDAMENTO (1 : N)
+- Regra de Negócio: Um cliente pode realizar vários agendamentos ou encaixes, mas cada agendamento pertence a exatamente um cliente.
+- Como se conectam: A chave primária ID_CLIENTE da tabela CLIENTE entra como Chave Estrangeira (ID_CLIENTE) na tabela AGENDAMENTO.
+
+
+## 4. BARBEIRO ↔ AGENDAMENTO (1 : N)
+- Regra de Negócio: Um barbeiro atende múltiplos agendamentos ao longo do dia. Cada agendamento é atribuído a apenas um barbeiro (Regra Operacional RN01).
+- Como se conectam: A chave primária ID_BARBEIRO da tabela BARBEIRO entra como Chave Estrangeira (ID_BARBEIRO) na tabela AGENDAMENTO.
+
+
+## 5. BARBEIRO ↔ SERVICO (M : N)
+- Regra de Negócio: Um barbeiro pode executar vários tipos de serviços, e um mesmo serviço pode ser prestado por diversos barbeiros da equipe.
+- Como se conectam: Como é uma relação Muitos-para-Muitos (M:N), cria-se uma tabela associativa intermediária chamada BARBEIRO_SERVICO:
+
+- Contém a PK composta ou individual (ID_BARBEIRO, ID_SERVICO).
+
+- ID_BARBEIRO (FK referenciando BARBEIRO).
+
+- ID_SERVICO (FK referenciando SERVICO).
+
+
+## 6. PACOTE ↔ SERVICO (M : N)
+- Regra de Negócio: Um pacote é composto por 1 ou mais serviços avulsos, e um serviço avulso pode fazer parte de vários pacotes diferentes.
+- Como se conectam: Cria-se a tabela associativa intermediária PACOTE_SERVICO:
+
+- ID_PACOTE (FK referenciando PACOTE).
+
+- ID_SERVICO (FK referenciando SERVICO).
+
+
+## 7. AGENDAMENTO ↔ SERVICO (M : N)
+- Regra de Negócio: Um atendimento/agendamento pode conter um ou mais serviços avulsos selecionados pelo cliente.
+ - Como se conectam: Cria-se a tabela associativa intermediária AGENDAMENTO_SERVICO:
+
+ - ID_AGENDAMENTO (FK referenciando AGENDAMENTO).
+
+- ID_SERVICO (FK referenciando SERVICO).
+
+
+## 8. AGENDAMENTO ↔ PACOTE (M : N)
+- Regra de Negócio: Um atendimento/agendamento pode incluir um ou mais pacotes promocionais.
+- Como se conectam: Cria-se a tabela associativa intermediária AGENDAMENTO_PACOTE:
+
+- ID_AGENDAMENTO (FK referenciando AGENDAMENTO).
+
+- ID_PACOTE (FK referenciando PACOTE).
+
+
+## 9. AGENDAMENTO ↔ PAGAMENTO (1 : 0..1)
+- Regra de Negócio: Um agendamento concluído possui no máximo um pagamento associado com uma única forma de pagamento (Regra Operacional RN02).
+- Como se conectam: A chave primária ID_AGENDAMENTO entra como Chave Estrangeira (ID_AGENDAMENTO) (com restrição de valor único/UNIQUE) na tabela PAGAMENTO.
+
+
+## 10. AGENDAMENTO ↔ CANCELAMENTO (1 : 0..1)
+- Regra de Negócio: Um agendamento cancelado possui exatamente um registro associado descrevendo a data, hora e canal da desistência.
+- Como se conectam: O ID_AGENDAMENTO entra como Chave Estrangeira (ID_AGENDAMENTO) (UNIQUE) na tabela CANCELAMENTO.
+
+
+- **Restrições e políticas organizacionais aplicadas ao modelo.**]
 
 
 ---
