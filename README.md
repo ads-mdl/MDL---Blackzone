@@ -126,7 +126,6 @@ O agendamento reúne essas informações e vincula o cliente, a unidade, o barbe
 ---
 
 ## 3. Requisitos do Sistema
-*(esta seção e a Seção 4 "Regras de Negócio" DIVIDEM 7,5% na dimensão conceitual — juntas valem 7,5%, não 7,5% cada — + 4% exclusivos desta seção na organização/documentação)*
 
 ### 3.1 Requisitos Funcionais
 *O que o sistema precisa FAZER (ex.: "o sistema deve permitir registrar uma venda").*
@@ -175,7 +174,9 @@ Para cada entidade identificada, liste:
 | *PAGAMENTO* | *Entidade fraca dependente de AGENDAMENTO, criada para registrar a liquidação financeira de um atendimento efetuado.* | *ID_PAGAMENTO - DT_PAGAMENTO - HR_PAGAMENTO - VL_PAGO - TP_FORMA_PAGAMENTO* |
 | *CANCELAMENTO* | *Entidade fraca dependente de AGENDAMENTO, destinada a registrar desistências e liberar a agenda.* | *ID_CANCELAMENTO - DT_CANCELAMENTO - HR_CANCELAMENTO - DS_CANAL_CANC* |
 
-- **Relacionamentos pertinentes:**
+
+## Relacionamentos Pertinetes
+
 ## 1. UNIDADE ↔ BARBEIRO (1 : N)
 - Regra de Negócio: A unidade possui vários barbeiros cadastrados, mas cada barbeiro trabalha em apenas uma unidade.
 - Como se conectam: A chave primária ID_UNIDADE da tabela UNIDADE entra como Chave Estrangeira (ID_UNIDADE) na tabela BARBEIRO.
@@ -244,14 +245,28 @@ Para cada entidade identificada, liste:
 - Como se conectam: O ID_AGENDAMENTO entra como Chave Estrangeira (ID_AGENDAMENTO) (UNIQUE) na tabela CANCELAMENTO.
 
 
-- **Restrições e políticas organizacionais aplicadas ao modelo.**]
-1. Escopo de Gestão Estritamente LocalDescrição: O sistema deve gerenciar e armazenar apenas as operações, profissionais, clientes, serviços e finanças da unidade Black Zone Celso 5065 (Tatuapé).Impacto no Modelo: Não há cruzamento de agendas, nem compartilhamento de clientes ou repasse de atendimentos entre outras franquias da rede Black Zone. A entidade UNIDADE garante o isolamento dos dados locais.
- 2. Atribuição de Atendimentos por Habilitação do BarbeiroDescrição: Nem todos os barbeiros necessariamente realizam todos os procedimentos (como barboterapia ou cortes específicos para cabelo afro). O sistema só pode permitir que um barbeiro seja vinculado a um agendamento se ele estiver habilitado para executar o serviço ou pacote solicitado.Impacto no Modelo: Exige a existência do relacionamento/tabela associativa BARBEIRO_SERVICO para verificar a aptidão técnica do profissional antes de confirmar o agendamento.
-3. Exclusividade de Um Único Barbeiro por AtendimentoDescrição: Todo o atendimento (composto por um serviço avulso, múltiplos serviços ou um pacote) deve ser realizado do início ao fim por um único barbeiro. Não é permitida a divisão ou troca de profissionais dentro do mesmo agendamento.Impacto no Modelo: O relacionamento entre AGENDAMENTO e BARBEIRO é estritamente de $1:N$ (um agendamento possui a chave estrangeira de exatamente $1$ barbeiro).
-4. 4. Política Transacional de Pagamento Único e Não FracionadoDescrição: A unidade determina que cada atendimento deve ter no máximo um pagamento associado e aceita apenas uma forma de pagamento por transação (Pix, Cartão de Crédito, Cartão de Débito ou Dinheiro). Não é permitido dividir o valor de um mesmo atendimento entre duas modalidades (ex.: metade em Pix e metade em Dinheiro).Impacto no Modelo: O relacionamento entre AGENDAMENTO e PAGAMENTO tem cardinalidade máxima $(0,1)$ ou $(1,1)$, e o atributo TP_FORMA_PAGTO armazena um único valor por registro financeiro.
-   5. 5. Respeito Rigoroso ao Horário de FuncionamentoDescrição: As reservas e encaixes estão restritos à janela de funcionamento da unidade: de segunda-feira a sábado, das 09h às 21h. A unidade permanece fechada aos domingos.Impacto no Modelo: O sistema deve validar no nível da aplicação e das restrições de tabela se os atributos DT_AGENDAMENTO e HR_INICIO / HR_FIM_ESTIMADO não violam os dias e horários de operação cadastrados na entidade UNIDADE.
-      6. 6. Política de Cancelamento e Prazos por CanalDescrição: Cancelamentos podem ser solicitados via aplicativo/site Trinks, WhatsApp ou presencialmente. A aceitação do cancelamento está sujeita ao cumprimento dos prazos previstos nas regras operacionais da unidade para permitir a liberação do horário a tempo.Impacto no Modelo: A entidade CANCELAMENTO registra não apenas a confirmação da desistência, mas também os atributos de auditoria DT_CANCELAMENTO, HR_CANCELAMENTO e DS_CANAL_CANC para posterior verificação do cumprimento do prazo.
-         7. 7. Formatação de Pacotes com Preço FechadoDescrição: Um pacote é uma combinação de dois ou mais serviços oferecida por um preço fixo próprio, que pode diferir da soma simples dos preços dos serviços avulsos.Impacto no Modelo: O valor do pacote é armazenado de forma independente no atributo VL_PACOTE da entidade PACOTE, sem ser calculado dinamicamente na hora do atendimento, preservando a regra de precificação comercial definida pela gerência.
+
+## Restrições e políticas organizacionais aplicadas ao modelo.
+## 1. Escopo de Gestão Estritamente Local.
+- O sistema deve gerenciar e armazenar apenas as operações, profissionais, clientes, serviços e finanças da unidade Black Zone Celso 5065 (Tatuapé). Impacto no Modelo: Não há cruzamento de agendas, nem compartilhamento de clientes ou repasse de atendimentos entre outras franquias da rede Black Zone. A entidade UNIDADE garante o isolamento dos dados locais.
+
+## 2. Atribuição de Atendimentos por Habilitação do Barbeiro.
+- Nem todos os barbeiros necessariamente realizam todos os procedimentos (como barboterapia ou cortes específicos para cabelo afro). O sistema só pode permitir que um barbeiro seja vinculado a um agendamento se ele estiver habilitado para executar o serviço ou pacote solicitado. Impacto no Modelo: Exige a existência do relacionamento/tabela associativa BARBEIRO_SERVICO para verificar a aptidão técnica do profissional antes de confirmar o agendamento.
+
+## 3. Exclusividade de Um Único Barbeiro por Atendimento.
+- Todo o atendimento (composto por um serviço avulso, múltiplos serviços ou um pacote) deve ser realizado do início ao fim por um único barbeiro. Não é permitida a divisão ou troca de profissionais dentro do mesmo agendamento. Impacto no Modelo: O relacionamento entre AGENDAMENTO e BARBEIRO é estritamente de $1:N$ (um agendamento possui a chave estrangeira de exatamente $1$ barbeiro).
+
+## 4. Política Transacional de Pagamento Único e Não Fracionado.
+- A unidade determina que cada atendimento deve ter no máximo um pagamento associado e aceita apenas uma forma de pagamento por transação (Pix, Cartão de Crédito, Cartão de Débito ou Dinheiro). Não é permitido dividir o valor de um mesmo atendimento entre duas modalidades (ex.: metade em Pix e metade em Dinheiro).Impacto no Modelo: O relacionamento entre AGENDAMENTO e PAGAMENTO tem cardinalidade máxima $(0,1)$ ou $(1,1)$, e o atributo TP_FORMA_PAGTO armazena um único valor por registro financeiro.
+
+## 5. Respeito Rigoroso ao Horário de Funcionamento.
+- As reservas e encaixes estão restritos à janela de funcionamento da unidade: de segunda-feira a sábado, das 09h às 21h. A unidade permanece fechada aos domingos.Impacto no Modelo: O sistema deve validar no nível da aplicação e das restrições de tabela se os atributos DT_AGENDAMENTO e HR_INICIO / HR_FIM_ESTIMADO não violam os dias e horários de operação cadastrados na entidade UNIDADE.
+
+## 6. Política de Cancelamento e Prazos por Canal.
+- Cancelamentos podem ser solicitados via aplicativo/site Trinks, WhatsApp ou presencialmente. A aceitação do cancelamento está sujeita ao cumprimento dos prazos previstos nas regras operacionais da unidade para permitir a liberação do horário a tempo.Impacto no Modelo: A entidade CANCELAMENTO registra não apenas a confirmação da desistência, mas também os atributos de auditoria DT_CANCELAMENTO, HR_CANCELAMENTO e DS_CANAL_CANC para posterior verificação do cumprimento do prazo.
+
+## 7. Formatação de Pacotes com Preço Fechado.
+- Um pacote é uma combinação de dois ou mais serviços oferecida por um preço fixo próprio, que pode diferir da soma simples dos preços dos serviços avulsos.Impacto no Modelo: O valor do pacote é armazenado de forma independente no atributo VL_PACOTE da entidade PACOTE, sem ser calculado dinamicamente na hora do atendimento, preservando a regra de precificação comercial definida pela gerência.
 
 ---
 
