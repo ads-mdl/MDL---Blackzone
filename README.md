@@ -175,7 +175,7 @@ Para cada entidade identificada, liste:
 | *CANCELAMENTO* | *Entidade fraca dependente de AGENDAMENTO, destinada a registrar desistências e liberar a agenda.* | *ID_CANCELAMENTO - DT_CANCELAMENTO - HR_CANCELAMENTO - DS_CANAL_CANC* |
 
 
-## Relacionamentos Pertinetes
+## Relacionamentos Pertinentes
 
 ## 1. UNIDADE ↔ BARBEIRO (1 : N)
 - Regra de Negócio: A unidade possui vários barbeiros cadastrados, mas cada barbeiro trabalha em apenas uma unidade.
