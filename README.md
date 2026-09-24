@@ -125,13 +125,40 @@ O agendamento reúne essas informações e vincula o cliente, a unidade, o barbe
 
 ---
 
-## 3. Requisitos do Sistema
+### 📋 3. Requisitos do Sistema
 
-### 3.1 Requisitos Funcionais
-*O que o sistema precisa FAZER (ex.: "o sistema deve permitir registrar uma venda").*
+Os requisitos foram organizados considerando a gestão de uma única unidade da Barbearia Black Zone e os processos representados no DER.
 
-### 3.2 Requisitos Não Funcionais
-*Características de qualidade (ex.: desempenho, segurança, usabilidade, disponibilidade).*
+### ⚙️ 3.1 Requisitos Funcionais
+
+Os requisitos funcionais descrevem o que o sistema deve permitir que a equipe faça no dia a dia.
+
+| Código | Requisito | Descrição |
+| :---: | :--- | :--- |
+| **RF01** | Gerenciar os dados da unidade | Cadastrar, consultar e atualizar nome, endereço, WhatsApp e horários de funcionamento da unidade. |
+| **RF02** | Gerenciar clientes | Cadastrar, consultar e atualizar nome, telefone e e-mail opcional dos clientes. |
+| **RF03** | Gerenciar barbeiros | Cadastrar, consultar e atualizar os dados dos barbeiros, vinculando-os à unidade e aos serviços que realizam, incluindo a informação sobre serem não fumantes. |
+| **RF04** | Gerenciar serviços e pacotes | Cadastrar e atualizar descrições, categorias, preços e durações estimadas, além de registrar os serviços avulsos que compõem cada pacote. |
+| **RF05** | Registrar agendamentos | Registrar cliente, unidade, barbeiro responsável, serviços ou pacotes escolhidos, data, horários de início e término e canal utilizado. |
+| **RF06** | Consultar e organizar a agenda | Consultar horários ocupados e disponíveis, impedindo sobreposição para o mesmo barbeiro e agendamentos fora do funcionamento da unidade. |
+| **RF07** | Registrar encaixes | Registrar atendimentos sem reserva prévia, identificando-os como encaixes pelo canal presencial e vinculando cliente, barbeiro e serviços escolhidos. |
+| **RF08** | Registrar pagamentos | Registrar, no respectivo agendamento, a data, o horário, o valor pago e a forma de pagamento utilizada. |
+| **RF09** | Registrar cancelamentos | Registrar a data, o horário e o canal do cancelamento, verificando o prazo previsto nas regras de negócio e liberando o horário cancelado. |
+| **RF10** | Consultar registros de atendimento | Consultar os agendamentos de cada cliente e barbeiro, incluindo os serviços escolhidos e os dados de pagamento ou cancelamento, quando existentes. |
+
+### 🛡️ 3.2 Requisitos Não Funcionais
+
+Os requisitos não funcionais definem as condições de qualidade esperadas para o uso do sistema.
+
+> **Validação:** os requisitos abaixo são propostas iniciais e devem ser confirmados com o responsável pela unidade, considerando a rotina e a infraestrutura disponível.
+
+| Código | Requisito | Descrição |
+| :---: | :--- | :--- |
+| **RNF01** | Facilidade de uso | Apresentar informações e mensagens em português, com campos identificados de forma clara e navegação simples para a equipe. |
+| **RNF02** | Segurança e privacidade | Restringir o acesso aos dados de clientes, agendamentos e pagamentos às pessoas autorizadas pela unidade. |
+| **RNF03** | Desempenho | Apresentar os resultados das consultas de clientes e horários em até três segundos, em condições normais de uso. |
+| **RNF04** | Disponibilidade | Manter o sistema disponível durante o funcionamento da unidade, de segunda-feira a sábado, das 09h às 21h. |
+| **RNF05** | Confiabilidade e recuperação | Preservar os dados salvos e contar com cópias de segurança e um procedimento de recuperação em caso de falha. |
 
 ---
 
