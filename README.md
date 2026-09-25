@@ -164,8 +164,32 @@ Os requisitos não funcionais definem as condições de qualidade esperadas para
 
 ## 4. Regras de Negócio
 
-- **Regras operacionais:** *condições que a organização impõe (ex.: "um pedido só pode ser fechado se houver estoque disponível", "uma doação só pode ser registrada com identificação do doador", "um ritual só pode ser agendado se o espaço estiver disponível").*
-- **Restrições organizacionais:** *limitações que afetam o modelo (ex.: políticas internas, prazos, exigências legais, normas religiosas ou estatutárias) — e por que elas importam.*
+As regras de negócio definem como os atendimentos da **Barbearia Black Zone Celso 5065** devem ser organizados e registrados.
+
+### 4.1 Regras Operacionais
+
+| Código | Regra | Descrição |
+| :--- | :--- | :--- |
+| **RN01** | Identificação do atendimento | Cada agendamento deve estar vinculado a um cliente, um barbeiro e à unidade. |
+| **RN02** | Responsável pelo atendimento | Um único barbeiro realiza todos os procedimentos escolhidos pelo cliente, incluindo os serviços dos pacotes. |
+| **RN03** | Serviços e pacotes | Cada agendamento deve incluir pelo menos um serviço avulso ou pacote. Conforme o DER, cada pacote reúne dois ou mais serviços avulsos. |
+| **RN04** | Preços | Os serviços avulsos custam a partir de **R$ 50,00**. Os pacotes possuem preços próprios cadastrados. |
+| **RN05** | Canais de agendamento | As marcações podem ser feitas pelo **Trinks, WhatsApp ou presencialmente**, com registro do canal utilizado. |
+| **RN06** | Encaixes | Clientes sem horário marcado podem ser atendidos quando houver disponibilidade. O atendimento deve ser registrado como **encaixe**, pelo canal **presencial**. |
+| **RN07** | Pagamento | Cada atendimento permite um único pagamento, em **Pix, crédito, débito ou dinheiro**, sem divisão entre formas. Devem ser registrados o valor, a data e a hora do pagamento e a forma utilizada. |
+| **RN08** | Cancelamento | Cada agendamento pode ter um cancelamento, solicitado pelo **Trinks, WhatsApp ou presencialmente**, com registro da data, da hora e do canal. |
+| **RN09** | Barbeiro não fumante | Essa característica deve constar no cadastro do profissional, permitindo considerar a preferência do cliente na escolha do barbeiro. |
+
+### 4.2 Restrições Organizacionais
+
+| Código | Restrição | Aplicação |
+| :--- | :--- | :--- |
+| **RN10** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
+| **RN11** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
+| **RN12** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
+| **RN13** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
+| **RN14** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
+
 
 ---
 
