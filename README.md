@@ -171,6 +171,8 @@ Os requisitos não funcionais definem as condições de qualidade esperadas para
 
 ## 5. Dicionário de Dados Conceitual 
 
+https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
+
 ---
 
 ## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
