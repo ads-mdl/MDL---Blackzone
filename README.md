@@ -171,19 +171,7 @@ Os requisitos não funcionais definem as condições de qualidade esperadas para
 
 ## 5. Dicionário de Dados Conceitual 
 
-Para cada entidade identificada, liste:
-
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| *ID_CLIENTE* | *Código identificador único de cliente no sistema * | *Chave Primária(PK). Tipo Integer. Obrigatório.* |
-| *NM_CLIENTE* | *Nome Completo do cliente recepcionado ou agendado * | *Tipo Varchar(100). Obrigatório.* |
-| *DS_TELEFONE* | *Número de contato / WhatsApp do Cliente * | *Tipo Varchar(20). Opcional.* |
-| *DS_EMAIL* | *Endereço de E-mail do cliente * | *Tipo Varchar(100). Opicional.* |
-| *VL_LIMITE_ORCAMENTO* | *Análise de orçamento disponível no bolso do cliente relacionado a corte e outros serviços* | *Tipo Númeric(10,2). Opcional.* |
-| *DS_PREFERENCIA_CORTE* | * Gostos, especificações e preferências do cliente definidos durante o atendimento* | *Tipo Text. Opcional* |
-| *IN_PENALIZADO_AUSENCIA* | *Indicador de Aplicação de penalidade por ausência sem aviso prévio* | *Tipo Boolean. Opcional* |
-
-
+Dicionário.html
 ---
 
 ## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
