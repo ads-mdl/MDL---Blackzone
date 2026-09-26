@@ -316,9 +316,65 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Blackzone-Der%20atualizado.
 
 ## 8. Justificativa Técnica
 
-A modelagem de dados proposta foi desenhada para refletir com precisão a realidade operacional da unidade franqueada Celso 5065, alinhando a teoria de bancos de dados relacionais aos processos observados em campo.As principais decisões de abstração, cardinalidade e estruturação de entidades justificam-se pelas razões descritas a seguir.
-## 1. Delimitação do Escopo Local e a Entidade UNIDADEA inclusão da entidade UNIDADE — mesmo sendo o sistema focado em apenas uma filial — é uma decisão de arquitetura voltada para a extensibilidade e padronização. Embora a regra de negócio estabeleça a gestão estritamente local (sem compartilhamento de agendas ou clientes entre franquias), centralizar os parâmetros de funcionamento (HR_ABERTURA, HR_FECHAMENTO) e contatos na entidade UNIDADE permite que as validações de agendamento sejam parametrizadas pelo banco de dados, em vez de ficarem fixadas no código da aplicação (hardcoded). Caso a franquia venha a expandir a gestão para outras unidades no futuro, a estrutura do banco já estará pronta para suportar múltiplos estabelecimentos sem requerer refatoração estrutural.
-## 2. Modelagem da Entidade Central AGENDAMENTO e Tratamento dos EncaixesA entidade AGENDAMENTO atua como o núcleo operacional e transacional da barbearia. Optou-se por unificar agendamentos prévios e encaixes presenciais dentro dessa mesma entidade, diferenciando-os pelos atributos TP_ATENDIMENTO (Agendamento vs. Encaixe) e DS_CANAL (Trinks, WhatsApp, Presencial). Essa abordagem elimina a necessidade de criar entidades separadas para atendimentos sem reserva, reduzindo a complexidade do esquema relacional e garantindo que relatórios operacionais e financeiros analisem o histórico de atendimentos de forma consolidada.
-## 3. Restrição de Exclusividade do Barbeiro (Cardinalidade 1:N entre BARBEIRO e AGENDAMENTO)A decisão de associar exatamente um barbeiro por agendamento ($1 : N$) atende à regra operacional da unidade, onde o profissional designado executa o atendimento do início ao fim. Embora um pacote possa incluir múltiplos serviços (corte, barba, sobrancelha), o modelo impede o fracionamento da execução entre profissionais distintos para o mesmo atendimento. Essa restrição simplifica o controle de comissões e previne conflitos na agenda do estabelecimento.
-## 4. Resolução das Relações Muitos-para-Muitos ($M:N$)Para garantir a Primeira Forma Normal (1FN) e evitar atributos multivalorados, as relações $M:N$ foram decompostas através de tabelas associativas:BARBEIRO_SERVICO: Registra a aptidão técnica de cada profissional. Um barbeiro só atende aos serviços para os quais possui habilitação cadastrada nesta tabela, assegurando a integridade das opções oferecidas ao cliente durante o agendamento.PACOTE_SERVICO: Permite que pacotes sejam compostos por múltiplos serviços avulsos de maneira flexível. O valor do pacote (VL_PACOTE) é mantido na entidade PACOTE como um preço promocional fixo, sem dependência de cálculo dinâmico sobre os valores individuais da tabela SERVICO.AGENDAMENTO_SERVICO e AGENDAMENTO_PACOTE: Garantem que um mesmo atendimento possa combinar serviços avulsos e pacotes sem duplicar o registro do agendamento.
-## 5. Entidades Fracas para Eventos Terminais (PAGAMENTO e CANCELAMENTO)PAGAMENTO e CANCELAMENTO foram modeladas como entidades fracas dependentes de AGENDAMENTO com cardinalidade máxima $(0,1)$:PAGAMENTO ($1 : 0..1$): Reflete a regra transacional de pagamento único por atendimento, utilizando uma única forma de pagamento (TP_FORMA_PAGTO). A dependência da chave de AGENDAMENTO com restrição de unicidade (UNIQUE) garante que não existam pagamentos órfãos ou fracionados em múltiplos registros para o mesmo agendamento.CANCELAMENTO ($1 : 0..1$): Isola os dados de auditoria do cancelamento (DT_CANCELAMENTO, HR_CANCELAMENTO, DS_CANAL_CANC). A separação dessa entidade mantém a tabela AGENDAMENTO enxuta para consultas de rotina na agenda, ao mesmo tempo que preserva o histórico de cancelamentos para análise de taxa de desistência e verificação do cumprimento das regras de prazos da barbearia.
+
+O DER foi organizado em cinco entidades: **UNIDADE, CLIENTE, BARBEIRO, AGENDAMENTO e SERVIÇO/PACOTE**. A divisão permite manter os cadastros separados e relacionar as informações necessárias para organizar os atendimentos.
+
+### Entidades e atributos
+
+| Entidade | Justificativa |
+| :--- | :--- |
+| **UNIDADE** | Reúne os dados da barbearia e seus horários de funcionamento. Mesmo com apenas uma unidade no projeto, mantém essas informações em um único cadastro. |
+| **CLIENTE** | Armazena os dados dos clientes, permitindo que uma mesma pessoa realize vários agendamentos sem repetir seu cadastro. |
+| **BARBEIRO** | Registra os profissionais e suas características, como a indicação de não fumante, além dos serviços que executam. |
+| **AGENDAMENTO** | Concentra data, horários, canal e tipo de atendimento, distinguindo reservas de encaixes. Também reúne os dados de pagamento e cancelamento. |
+| **SERVIÇO/PACOTE** | Mantém o catálogo de procedimentos e pacotes, com descrição, duração e preço. O atributo `tipo` diferencia as duas opções. |
+
+Cada entidade possui um atributo identificador, como `id_cliente` e `id_agendamento`, para distinguir registros mesmo quando existirem nomes iguais.
+
+### Relacionamentos e cardinalidades
+
+| Relacionamento | Justificativa |
+| :--- | :--- |
+| **UNIDADE RECEBE AGENDAMENTO** | Uma unidade pode ter nenhum ou vários agendamentos **(0,N)**, enquanto cada agendamento pertence a uma única unidade **(1,1)**. |
+| **CLIENTE REALIZA AGENDAMENTO** | Um cliente pode estar cadastrado sem reservas ou realizar vários agendamentos **(0,N)**. Cada agendamento pertence a um cliente **(1,1)**. |
+| **BARBEIRO EXECUTA SERVIÇO/PACOTE** | Um barbeiro executa um ou mais serviços avulsos **(1,N)**, e um serviço pode estar associado a nenhum ou vários barbeiros **(0,N)**. Nesse relacionamento, a participação é restrita aos serviços avulsos. |
+| **AGENDAMENTO INCLUI SERVIÇO/PACOTE** | Cada agendamento inclui uma ou mais opções **(1,N)**. Um serviço ou pacote pode ainda não ter sido escolhido ou aparecer em vários agendamentos **(0,N)**. |
+| **SERVIÇO/PACOTE CONTÉM SERVIÇO/PACOTE** | Mostra quais serviços fazem parte de cada pacote. Por exemplo, um pacote pode reunir corte e barba. Cada pacote deve ter pelo menos dois serviços, e o mesmo serviço pode aparecer em diferentes pacotes. |
+
+### Decisões de modelagem
+
+- **Serviços e pacotes na mesma entidade:** compartilham atributos como nome, descrição, duração e preço. A composição dos pacotes é registrada pelo relacionamento **CONTÉM**.
+- **Pagamento e cancelamento dentro de AGENDAMENTO:** essa escolha acompanha a regra de permitir, no máximo, um pagamento e um cancelamento por agendamento. Os campos são preenchidos somente quando esses eventos ocorrem.
+- **Horário de funcionamento dentro de UNIDADE:** agrupa dia da semana, abertura, fechamento e indicação de dia fechado, permitindo registrar a programação semanal.
+- **Regras complementares ao desenho:** o prazo de cancelamento, o preço inicial dos serviços e a proibição de sobreposição de horários precisam ser descritos nas regras de negócio, pois as cardinalidades não expressam essas condições sozinhas.
+
+- ## 9. Uso de Inteligência Artificial
+
+O grupo utilizou o **ChatGPT** para auxiliar na compreensão do conteúdo, na elaboração e revisão do DER e na organização do README. Os principais usos estão descritos abaixo.
+
+### 9.1 Compreensão do conteúdo e preparação da entrevista
+
+| Item | Registro |
+| :--- | :--- |
+| **Ferramenta e etapa** | ChatGPT, na leitura dos materiais da disciplina e na preparação das perguntas para a pesquisa de campo. |
+| **Motivação** | Entender os conceitos de modelagem e organizar as informações que precisavam ser levantadas na barbearia. |
+| **Prompts utilizados** | “Analise os PDFs da disciplina e explique os conceitos necessários para elaborar o DER.”; “Explique o significado das cardinalidades (0,N), (1,N), (1,1) e (0,1), com exemplos.”; “Elabore um roteiro de entrevista para levantar as informações necessárias à construção do DER da barbearia.” |
+| **Resposta recebida** | A IA explicou os conceitos de entidades, relacionamentos e cardinalidades com exemplos e sugeriu perguntas para a entrevista sobre a rotina de agendamentos, serviços, pagamentos e cancelamentos da barbearia. |
+| **Fontes consultadas e verificadas** | Foram fornecidos à ferramenta os slides da disciplina e o modelo de entrega do professor. O roteiro gerado serviu como preparação e não como evidência de uma entrevista realizada. |
+| **Trechos rejeitados ou corrigidos** | O escopo foi delimitado a uma única unidade. Também foi esclarecido que um barbeiro realiza todo o atendimento e que não há divisão entre formas de pagamento. |
+| **Justificativa da escolha final** | Foram aproveitadas as explicações e perguntas relacionadas aos processos incluídos no projeto. |
+| **Reflexão crítica** | A IA ajuda a organizar perguntas, mas não conhece a rotina da unidade e não substitui a pesquisa de campo. |
+
+
+### 9.2 Organização e revisão do README
+
+| Item | Registro |
+| :--- | :--- |
+| **Ferramenta e etapa** | ChatGPT, na redação da caracterização da organização, dos processos, dos requisitos, das regras de negócio e da justificativa técnica. |
+| **Motivação** | Organizar o conteúdo em Markdown e tornar as explicações mais claras para leitura e apresentação. |
+| **Prompts utilizados** | “Organize o conteúdo em Markdown para o README, com linguagem clara e objetiva. Explique as decisões de modelagem e mantenha o texto coerente com o DER e com as informações fornecidas sobre a barbearia.” |
+| **Resposta recebida** | Sugestões de textos e tabelas para o README, com explicações sobre os processos da barbearia e as decisões do DER. |
+| **Fontes consultadas e verificadas** | Foram usadas as informações fornecidas pelo grupo, como os sete barbeiros e a média de doze atendimentos por barbeiro por dia. Esses dados não foram obtidos por pesquisa independente da IA. |
+| **Trechos rejeitados ou corrigidos** | Foram reduzidos textos considerados artificiais ou repetitivos. O nome do gerente foi corrigido de Pedro para Dante, e foi esclarecido que os preços a partir de R$ 50,00 se referem aos serviços avulsos. A sugestão de regra sobre validade promocional dos pacotes foi descartada por não estar confirmada. |
+| **Justificativa da escolha final** | Foram priorizados textos diretos e relacionados ao escopo do projeto, com ajustes para acompanhar as mudanças no DER. |
+| **Reflexão crítica** | A IA pode apresentar suposições como se fossem regras da organização. Por isso, cada sugestão precisa ser comparada com as informações da pesquisa de campo antes de entrar na versão final. |
