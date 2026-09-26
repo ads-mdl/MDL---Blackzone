@@ -311,6 +311,8 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
 
+https://github.com/ads-mdl/MDL---Blackzone/blob/main/Blackzone-Der%20atualizado.jpeg
+
 
 ## 8. Justificativa Técnica
 
