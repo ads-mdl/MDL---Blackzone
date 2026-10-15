@@ -8,8 +8,8 @@
 | :--- | :--- |
 | Felipe André Cruz Leite | **48200310** |
 | Guilherme Fernando Alves da Silva | **48183199** |
-| Richard Mattos Leite | **48135291** |
-| Kauã Ferreira | **48250139** |
+| Richard Mattos Dias | **48135291** |
+| Kauan Ferreira | **48250139** |
 | Vitor da Silva Bonilha | **48123005** |
 
 ---
