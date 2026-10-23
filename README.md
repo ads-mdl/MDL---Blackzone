@@ -45,8 +45,6 @@ O estabelecimento atua na prestação de serviços de barbearia e cuidados esté
 
 ### ⚠️ Problemas e Necessidades Identificados
 
-#### Problemas potenciais a validar na pesquisa de campo
-
 - **Conflitos de horários:** agendamentos recebidos pelo WhatsApp ou presencialmente podem gerar sobreposição quando não são registrados imediatamente na agenda do barbeiro.
 
 - **Falhas no registro de cancelamentos:** cancelamentos comunicados por diferentes canais podem demorar a ser atualizados, mantendo horários ocupados mesmo após a desistência do cliente.
