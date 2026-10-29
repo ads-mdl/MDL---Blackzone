@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicionário de Dados - Cliente</title>
+    <title>Dicionário de Dados - Barbearia Black Zone</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,8 +12,17 @@
             color: #333;
         }
 
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         h2 {
             color: #2c3e50;
+            margin-top: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
         }
 
         table {
@@ -21,6 +30,7 @@
             border-collapse: collapse;
             background-color: #ffffff;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         th, td {
@@ -45,6 +55,7 @@
             font-weight: bold;
             font-family: monospace;
             color: #c0392b;
+            white-space: nowrap;
         }
 
         td.regra {
@@ -58,57 +69,455 @@
             border-radius: 4px;
             font-size: 11px;
             font-weight: bold;
-            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .tag-fk {
+            background-color: #f39c12;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
 
-    <h2>Dicionário de Dados — Tabela Cliente</h2>
+    <h1>Dicionário de Dados — Barbearia Black Zone Celso 5065</h1>
 
+    <!-- Tabela Cliente -->
+    <h2>Tabela: CLIENTE</h2>
     <table>
         <thead>
             <tr>
                 <th>Atributo</th>
                 <th>Descrição</th>
-                <th>Regra de Negócio Associada</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td class="atributo">ID_CLIENTE</td>
-                <td>Código identificador único de cliente no sistema</td>
-                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Tipo Integer. Obrigatório.</td>
+                <td>Código identificador único do cliente no sistema</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
             </tr>
             <tr>
                 <td class="atributo">NM_CLIENTE</td>
                 <td>Nome Completo do cliente recepcionado ou agendado</td>
-                <td class="regra">Tipo Varchar(100). Obrigatório.</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
             </tr>
             <tr>
                 <td class="atributo">DS_TELEFONE</td>
                 <td>Número de contato / WhatsApp do Cliente</td>
-                <td class="regra">Tipo Varchar(20). Opcional.</td>
+                <td class="regra">Varchar(20). Opcional.</td>
             </tr>
             <tr>
                 <td class="atributo">DS_EMAIL</td>
-                <td>Endereço de E-mail do cliente</td>
-                <td class="regra">Tipo Varchar(100). Opcional.</td>
+                <td>Endereço de e-mail do cliente</td>
+                <td class="regra">Varchar(100). Opcional.</td>
             </tr>
             <tr>
                 <td class="atributo">VL_LIMITE_ORCAMENTO</td>
-                <td>Análise de orçamento disponível no bolso do cliente relacionado a corte e outros serviços</td>
-                <td class="regra">Tipo Numeric(10,2). Opcional.</td>
+                <td>Análise de orçamento disponível do cliente</td>
+                <td class="regra">Numeric(10,2). Opcional.</td>
             </tr>
             <tr>
                 <td class="atributo">DS_PREFERENCIA_CORTE</td>
-                <td>Gostos, especificações e preferências do cliente definidos durante o atendimento</td>
-                <td class="regra">Tipo Text. Opcional.</td>
+                <td>Gostos, especificações e preferências do cliente</td>
+                <td class="regra">Text. Opcional.</td>
             </tr>
             <tr>
                 <td class="atributo">IN_PENALIZADO_AUSENCIA</td>
-                <td>Indicador de Aplicação de penalidade por ausência sem aviso prévio</td>
-                <td class="regra">Tipo Boolean. Opcional.</td>
+                <td>Indicador de penalidade por ausência sem aviso prévio</td>
+                <td class="regra">Boolean. Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Unidade -->
+    <h2>Tabela: UNIDADE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Identificador único da infraestrutura/franquia</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_UNIDADE</td>
+                <td>Nome da unidade (ex: Black Zone Celso 5065)</td>
+                <td class="regra">Varchar(100). Obrigatório. (RN10)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_ENDERECO</td>
+                <td>Endereço físico da unidade</td>
+                <td class="regra">Varchar(200). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_TELEFONE</td>
+                <td>Telefone de contato da unidade</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_ABERTURA</td>
+                <td>Horário de abertura do estabelecimento</td>
+                <td class="regra">Time. Obrigatório. (Ex: 09:00 - RN11)</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_FECHAMENTO</td>
+                <td>Horário de fechamento do estabelecimento</td>
+                <td class="regra">Time. Obrigatório. (Ex: 21:00 - RN11)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Barbeiro -->
+    <h2>Tabela: BARBEIRO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_BARBEIRO</td>
+                <td>Código identificador do profissional</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Unidade em que o barbeiro trabalha</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira. Referencia UNIDADE(ID_UNIDADE). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_BARBEIRO</td>
+                <td>Nome do barbeiro</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_TELEFONE</td>
+                <td>Telefone de contato do barbeiro</td>
+                <td class="regra">Varchar(20). Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">FL_NAO_FUMANTE</td>
+                <td>Sinaliza se o profissional é não fumante</td>
+                <td class="regra">Boolean. Obrigatório. (RN09)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Recepcionista -->
+    <h2>Tabela: RECEPCIONISTA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_RECEPCIONISTA</td>
+                <td>Código identificador do profissional de recepção</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Unidade em que a recepcionista trabalha</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira. Referencia UNIDADE(ID_UNIDADE). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_RECEPCIONISTA</td>
+                <td>Nome da recepcionista</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_TELEFONE</td>
+                <td>Telefone de contato</td>
+                <td class="regra">Varchar(20). Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_TURNO</td>
+                <td>Turno de trabalho (ex: Manhã, Tarde, Integral)</td>
+                <td class="regra">Varchar(50). Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Serviço -->
+    <h2>Tabela: SERVICO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_SERVICO</td>
+                <td>Código identificador do serviço avulso</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_SERVICO</td>
+                <td>Nome do procedimento de estética (ex: Corte, Barba)</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CATEGORIA</td>
+                <td>Categoria do serviço oferecido</td>
+                <td class="regra">Varchar(50). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_DURACAO_MIN</td>
+                <td>Duração estimada do serviço em minutos</td>
+                <td class="regra">Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_SERVICO</td>
+                <td>Valor cobrado pelo serviço</td>
+                <td class="regra">Numeric(10,2). Obrigatório. (A partir de R$ 50,00 - RN04)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Pacote -->
+    <h2>Tabela: PACOTE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_PACOTE</td>
+                <td>Código identificador do pacote</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_PACOTE</td>
+                <td>Nome comercial do pacote</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_PACOTE</td>
+                <td>Descrição do agrupamento da oferta combinada</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PACOTE</td>
+                <td>Preço diferenciado fechado para o pacote</td>
+                <td class="regra">Numeric(10,2). Obrigatório. (RN04)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Agendamento -->
+    <h2>Tabela: AGENDAMENTO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_AGENDAMENTO</td>
+                <td>Código identificador do atendimento/agendamento</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_CLIENTE</td>
+                <td>Cliente que será atendido</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira (CLIENTE). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_BARBEIRO</td>
+                <td>Barbeiro responsável pelo atendimento</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira (BARBEIRO). Obrigatório. (RN02)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Unidade onde ocorrerá o atendimento</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira (UNIDADE). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_RECEPCIONISTA</td>
+                <td>Recepcionista que realizou/confirmou o agendamento</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira (RECEPCIONISTA). Opcional (nulo se via site/Trinks).</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_AGENDAMENTO</td>
+                <td>Data programada ou do encaixe</td>
+                <td class="regra">Date. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_AGENDAMENTO</td>
+                <td>Horário exato em que a reserva foi feita no sistema</td>
+                <td class="regra">Time. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_INICIO</td>
+                <td>Horário de início do atendimento</td>
+                <td class="regra">Time. Obrigatório. (Sem sobreposições - RN12)</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_FIM_ESTIMADO</td>
+                <td>Horário de término projetado com base na duração</td>
+                <td class="regra">Time. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_ATENDIMENTO</td>
+                <td>Tipo (Agendamento ou Encaixe)</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CANAL</td>
+                <td>Trinks, WhatsApp ou Presencial</td>
+                <td class="regra">Varchar(30). Obrigatório. (RN05, RN06)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_AGENDAMENTO</td>
+                <td>Status atual (Concluído, Cancelado, Pendente)</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Pagamento -->
+    <h2>Tabela: PAGAMENTO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_PAGAMENTO</td>
+                <td>Código de controle da transação de pagamento</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_AGENDAMENTO</td>
+                <td>Agendamento liquidado financeiramente</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira (AGENDAMENTO). UNIQUE (1:1). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_PAGAMENTO</td>
+                <td>Data da liquidação</td>
+                <td class="regra">Date. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_PAGAMENTO</td>
+                <td>Horário em que o pagamento foi processado</td>
+                <td class="regra">Time. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PAGO</td>
+                <td>Montante financeiro recebido</td>
+                <td class="regra">Numeric(10,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_FORMA_PAGAMENTO</td>
+                <td>Pix, Cartão de Crédito, Débito, Dinheiro</td>
+                <td class="regra">Varchar(30). Obrigatório. Única por atendimento (RN07).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Cancelamento -->
+    <h2>Tabela: CANCELAMENTO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_CANCELAMENTO</td>
+                <td>Registro de identificação da desistência</td>
+                <td class="regra"><span class="tag-pk">PK</span> Chave Primária. Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_AGENDAMENTO</td>
+                <td>Agendamento que sofreu a desistência</td>
+                <td class="regra"><span class="tag-fk">FK</span> Chave Estrangeira (AGENDAMENTO). UNIQUE (1:1). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_CANCELAMENTO</td>
+                <td>Data em que o cancelamento foi registrado</td>
+                <td class="regra">Date. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_CANCELAMENTO</td>
+                <td>Horário do registro do cancelamento</td>
+                <td class="regra">Time. Obrigatório. (Deve respeitar antecedência de 2h - RN13)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CANAL_CANC</td>
+                <td>Trinks, WhatsApp ou Presencial</td>
+                <td class="regra">Varchar(30). Obrigatório. (RN08)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabelas Associativas (M:N) -->
+    <h2>Tabelas Associativas (Relacionamentos Muitos-para-Muitos)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Tabela Intermediária</th>
+                <th>Atributos Formadores</th>
+                <th>Descrição / Regra de Negócio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">BARBEIRO_SERVICO</td>
+                <td><span class="tag-fk">FK</span> ID_BARBEIRO<br><span class="tag-fk">FK</span> ID_SERVICO</td>
+                <td class="regra">Relaciona os serviços que cada barbeiro é habilitado a realizar. (RN14)</td>
+            </tr>
+            <tr>
+                <td class="atributo">PACOTE_SERVICO</td>
+                <td><span class="tag-fk">FK</span> ID_PACOTE<br><span class="tag-fk">FK</span> ID_SERVICO</td>
+                <td class="regra">Define a composição de serviços dentro de uma oferta promocional. (RN03)</td>
+            </tr>
+            <tr>
+                <td class="atributo">AGENDAMENTO_SERVICO</td>
+                <td><span class="tag-fk">FK</span> ID_AGENDAMENTO<br><span class="tag-fk">FK</span> ID_SERVICO</td>
+                <td class="regra">Relaciona os serviços avulsos consumidos em um atendimento específico.</td>
+            </tr>
+            <tr>
+                <td class="atributo">AGENDAMENTO_PACOTE</td>
+                <td><span class="tag-fk">FK</span> ID_AGENDAMENTO<br><span class="tag-fk">FK</span> ID_PACOTE</td>
+                <td class="regra">Relaciona os pacotes escolhidos para o atendimento.</td>
             </tr>
         </tbody>
     </table>
