@@ -246,7 +246,7 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
 
 
 ## 6. PACOTE ↔ SERVICO (M : N)
-- Regra de Negócio: Um pacote é composto por 1 ou mais serviços avulsos, e um serviço avulso pode fazer parte de vários pacotes diferentes.
+- Regra de Negócio: Um pacote é composto por 2 ou mais serviços avulsos, e um serviço avulso pode fazer parte de vários pacotes diferentes.
 - Como se conectam: Cria-se a tabela associativa intermediária PACOTE_SERVICO:
 
 - ID_PACOTE (FK referenciando PACOTE).
