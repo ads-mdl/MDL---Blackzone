@@ -118,6 +118,12 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 - **Registro do cancelamento:** receber a solicitação pelo Trinks, WhatsApp ou presencialmente e verificar o prazo previsto nas regras da unidade. Quando o cancelamento for aceito, registrar a data, o horário e o canal utilizado no agendamento, liberando o horário para outro atendimento.
 
 - **Controle de faltas sem aviso:** a recepcionista registra como falta o agendamento do cliente que não compareceu nem solicitou cancelamento, podendo entrar em contato para remarcação. Não são aplicadas multas nem bloqueios automáticos.
+  
+- **Venda de produtos no balcão:** a recepcionista registra os produtos comprados pelo cliente, sendo eles: pomada em pó com efeito matte/seco para cabelos, óleo de hidratação para barba e shampoo capilar profissional, As unidades vendidas são descontadas do estoque, e os recebimentos entram no fechamento de caixa.
+  
+- **Compra de produtos e insumos:** Quando verificado que os produtos para venda e os materiais utilizados nos atendimentos precisam de reposição. O gerente é informado pelos barbeiros/recepcionista ou verifica no estoque os produtos que estão em falta, ele autoriza a compra e, no recebimento, confere os itens, o número de unidades, os valores e a validade, registrando a entrada no estoque.
+  
+- **Fechamento de caixa:** ao final do expediente, o gerente confere os recebimentos em dinheiro, Pix, crédito e débito e as saídas registradas, incluindo os repasses aos barbeiros. Eventuais diferenças são verificadas antes da confirmação do saldo final do dia.
 
 ### Integração entre os processos
 
