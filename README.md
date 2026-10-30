@@ -111,6 +111,8 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 
 - **Realização do atendimento:** o barbeiro responsável realiza os serviços vinculados ao agendamento, incluindo os procedimentos que compõem os pacotes. Um único barbeiro realiza todo o atendimento.
 
+- **Comissão/remuneração dos barbeiros:** o barbeiro recebe uma comissão mínima de R$ 25 por agendamento realizado e pago, podendo aumentar conforme os serviços adicionais ou pacotes escolhidos pelo cliente. O gerente confere os valores e registra a data e o valor do repasse.
+
 - **Registro do pagamento:** registrar o valor recebido, a data, o horário e a forma de pagamento no respectivo agendamento. O pagamento pode ser feito por Pix, cartão de crédito, cartão de débito ou dinheiro, utilizando uma única forma por atendimento.
 
 - **Registro do cancelamento:** receber a solicitação pelo Trinks, WhatsApp ou presencialmente e verificar o prazo previsto nas regras da unidade. Quando o cancelamento for aceito, registrar a data, o horário e o canal utilizado no agendamento, liberando o horário para outro atendimento.
@@ -121,7 +123,10 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 
 O cadastro do cliente permite identificá-lo nos agendamentos e encaixes. O catálogo de serviços e pacotes informa os procedimentos disponíveis, seus preços e a duração estimada, enquanto o cadastro dos barbeiros permite selecionar o profissional responsável.
 
-O agendamento reúne essas informações e vincula o cliente, a unidade, o barbeiro e os serviços escolhidos. Após o atendimento, o pagamento é registrado nesse mesmo agendamento. Caso haja cancelamento, seus dados também ficam associados ao registro. Quando o cliente não comparece nem solicita cancelamento, o agendamento é marcado como falta, permitindo distinguir as ausências dos atendimentos realizados e dos cancelamentos.
+O agendamento reúne essas informações e vincula o cliente, a unidade, o barbeiro e os serviços escolhidos. Após o atendimento, o pagamento é registrado nesse mesmo agendamento. Caso haja cancelamento, seus dados também ficam associados ao registro.
+Quando o cliente não comparece e nem solicita cancelamento, o agendamento é marcado como falta, permitindo distinguir as ausências, atendimentos realizados e cancelamentos.
+
+
 ---
 
 ### 📋 3. Requisitos do Sistema
