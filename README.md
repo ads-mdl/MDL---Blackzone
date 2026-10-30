@@ -101,8 +101,8 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 
 - **Cadastro e atualização de clientes:** registrar nome, telefone e, opcionalmente, e-mail. Antes de realizar um novo cadastro, verificar se o cliente já está registrado para evitar duplicidade.
 
-- **Organização dos dados da unidade e dos barbeiros:** manter os dados da unidade e seus horários de funcionamento, além dos cadastros dos barbeiros, dos serviços que realizam e da informação sobre serem ou não fumantes.
-
+- **Organização dos dados da unidade, dos barbeiros e de suas escalas:** manter os dados da unidade, seus horários de funcionamento e os cadastros dos sete barbeiros, incluindo os serviços que realizam e a informação sobre serem ou não fumantes. Organizar os dias de trabalho, turnos, intervalos e folgas de cada profissional. A recepcionista consulta a escala e a agenda antes de confirmar agendamentos e encaixes.
+  
 - **Cadastro de serviços e pacotes:** registrar os serviços oferecidos, suas descrições, categorias, preços e durações estimadas. Para os pacotes, informar quais serviços estão incluídos e o preço da combinação.
 
 - **Agendamento de atendimentos:** receber a solicitação pelo Trinks, WhatsApp ou presencialmente, identificar o cliente e os serviços desejados e verificar um horário disponível com um barbeiro que realize os procedimentos. Registrar a data, os horários de início e término e o canal utilizado, respeitando o funcionamento da unidade e evitando sobreposição de horários.
