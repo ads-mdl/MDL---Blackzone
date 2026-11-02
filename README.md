@@ -189,17 +189,18 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 | **RN07** | Pagamento | Cada atendimento permite um único pagamento, em **Pix, crédito, débito ou dinheiro**, sem divisão entre formas. Devem ser registrados o valor, a data e a hora do pagamento e a forma utilizada. |
 | **RN08** | Cancelamento | Cada agendamento pode ter um cancelamento, solicitado pelo **Trinks, WhatsApp ou presencialmente**, com registro da data, da hora e do canal. |
 | **RN09** | Barbeiro não fumante | Essa característica deve constar no cadastro do profissional, permitindo considerar a preferência do cliente na escolha do barbeiro. |
+| **RN10** | Comissão do barbeiro | Cada agendamento realizado e pago gera uma comissão mínima de R$ 25 para o barbeiro responsável. O valor pode aumentar conforme os serviços adicionais ou pacotes incluídos, sendo conferido pelo gerente antes do repasse. Agendamentos cancelados ou com falta não geram comissão. |
 
 ### 4.2 Restrições Organizacionais
 
 | Código | Restrição | Aplicação |
 | :--- | :--- | :--- |
-| **RN10** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
-| **RN11** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
-| **RN12** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
-| **RN13** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
-| **RN14** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
-| **RN15** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
+| **RN11** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
+| **RN12** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
+| **RN13** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
+| **RN14** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
+| **RN15** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
+| **RN16** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
 
 
 ---
