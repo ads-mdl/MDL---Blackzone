@@ -111,6 +111,8 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 
 - **Realização do atendimento:** o barbeiro responsável realiza os serviços vinculados ao agendamento, incluindo os procedimentos que compõem os pacotes. Um único barbeiro realiza todo o atendimento.
 
+- **Aplicação de preços diferenciados:** identificar a categoria do atendimento e aplicar o preço do corte avulso: R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Os demais cortes seguem o preço cadastrado, a partir de R$ 50. Serviços adicionais e pacotes possuem preços próprios conforme estabelecido na tabela de preços da franquia.
+
 - **Comissão/remuneração dos barbeiros:** o barbeiro recebe uma comissão mínima de R$ 25 por agendamento realizado e pago, podendo aumentar conforme os serviços adicionais ou pacotes escolhidos pelo cliente. O gerente confere os valores e registra a data e o valor do repasse.
 
 - **Registro do pagamento:** registrar o valor recebido, a data, o horário e a forma de pagamento no respectivo agendamento. O pagamento pode ser feito por Pix, cartão de crédito, cartão de débito ou dinheiro, utilizando uma única forma por atendimento.
@@ -198,9 +200,10 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 | **RN11** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
 | **RN12** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
 | **RN13** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
-| **RN14** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
-| **RN15** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
-| **RN16** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
+| **RN14** | Preços diferenciados para cortes | O corte avulso custa R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Essas condições não se estendem a serviços adicionais ou pacotes. Os demais cortes mantêm o preço cadastrado, a partir de R$ 50. |
+| **RN15** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
+| **RN16** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
+| **RN17** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
 
 
 ---
