@@ -115,7 +115,7 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 
 - **Higienização e preparação do atendimento:** preparar a bancada e os materiais, conferir a validade dos produtos e utilizar equipamentos devidamente higienizados e esterilizados. Após cada atendimento, limpar os equipamentos utilizados e descartar as lâminas em recipiente próprio para materiais perfurocortantes.
 
-- **Comissão/remuneração dos barbeiros:** o barbeiro recebe uma comissão mínima de R$ 25 por agendamento realizado e pago, podendo aumentar conforme os serviços adicionais ou pacotes escolhidos pelo cliente. O gerente confere os valores e registra a data e o valor do repasse.
+- **Comissão/remuneração dos barbeiros:** o barbeiro recebe 50% do valor efetivamente pago pelos serviços e pacotes realizados em cada agendamento. Vendas de produtos, cancelamentos e faltas não geram essa comissão. O gerente confere os valores e registra a data e o valor do repasse.
 
 - **Registro do pagamento:** registrar o valor recebido, a data, o horário e a forma de pagamento no respectivo agendamento. O pagamento pode ser feito por Pix, cartão de crédito, cartão de débito ou dinheiro, utilizando uma única forma por atendimento.
 
@@ -151,14 +151,23 @@ Os requisitos funcionais descrevem o que o sistema deve permitir que a equipe fa
 | :---: | :--- | :--- |
 | **RF01** | Gerenciar os dados da unidade | Cadastrar, consultar e atualizar nome, endereço, WhatsApp e horários de funcionamento da unidade. |
 | **RF02** | Gerenciar clientes | Cadastrar, consultar e atualizar nome, telefone e e-mail opcional dos clientes. |
-| **RF03** | Gerenciar barbeiros | Cadastrar, consultar e atualizar os dados dos barbeiros, vinculando-os à unidade e aos serviços que realizam, incluindo a informação sobre serem não fumantes. |
+| **RF03** | Gerenciar barbeiros e escalas | Cadastrar, consultar e atualizar os dados dos barbeiros, vinculando-os à unidade e aos serviços que realizam e a indicação de fumante/não fumante, além dos dias de trabalho, horários, intervalos e folgas de cada profissional. |
+| **RF06** | Consultar e organizar a agenda | Consultar horários ocupados e disponíveis, impedindo sobreposição de atendimentos e respeitando o funcionamento da unidade e a escala de cada barbeiro, incluindo intervalos e folgas. |
+| **RF10** | Consultar registros de atendimento | Consultar os agendamentos de cada cliente e barbeiro, incluindo serviços escolhidos, situação do atendimento e dados de pagamento ou cancelamento, quando existentes. |
 | **RF04** | Gerenciar serviços e pacotes | Cadastrar e atualizar descrições, categorias, preços e durações estimadas, além de registrar os serviços avulsos que compõem cada pacote. |
 | **RF05** | Registrar agendamentos | Registrar cliente, unidade, barbeiro responsável, serviços ou pacotes escolhidos, data, horários de início e término e canal utilizado. |
-| **RF06** | Consultar e organizar a agenda | Consultar horários ocupados e disponíveis, impedindo sobreposição para o mesmo barbeiro e agendamentos fora do funcionamento da unidade. |
 | **RF07** | Registrar encaixes | Registrar atendimentos sem reserva prévia, identificando-os como encaixes pelo canal presencial e vinculando cliente, barbeiro e serviços escolhidos. |
 | **RF08** | Registrar pagamentos | Registrar, no respectivo agendamento, a data, o horário, o valor pago e a forma de pagamento utilizada. |
 | **RF09** | Registrar cancelamentos | Registrar a data, o horário e o canal do cancelamento, verificando o prazo previsto nas regras de negócio e liberando o horário cancelado. |
-| **RF10** | Consultar registros de atendimento | Consultar os agendamentos de cada cliente e barbeiro, incluindo os serviços escolhidos e os dados de pagamento ou cancelamento, quando existentes. |
+| **RF10** | Consultar registros de atendimento | Consultar os agendamentos de cada cliente e barbeiro, incluindo serviços escolhidos, situação do atendimento e dados de pagamento ou cancelamento, quando existentes. |
+| **RF11** | Atualizar a situação dos atendimentos | Registrar a situação de cada agendamento como agendado, concluído, cancelado ou falta. |
+| **RF12** | Aplicar preços diferenciados | Aplicar ao corte avulso os valores de R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos, mantendo os preços próprios dos serviços adicionais e pacotes. |
+| **RF13** | Gerenciar comissões e repasses | Registrar a comissão de cada atendimento realizado e pago, consultar os valores por barbeiro e registrar a data e o valor dos repasses, identificando as comissões quitadas. |
+| **RF14** | Gerenciar produtos e insumos | Cadastrar, consultar e atualizar produtos para venda e materiais utilizados nos atendimentos, incluindo preços, quantidades em estoque e validade por lote, quando aplicável. |
+| **RF15** | Registrar vendas de produtos | Registrar os produtos vendidos, o número de unidades de cada produto, os preços e a forma de pagamento, descontando do estoque as quantidades vendidas. |
+| **RF16** | Registrar compras e recebimentos | Registrar as compras autorizadas pelo gerente, seus itens, quantidades e valores, acrescentando ao estoque somente as unidades recebidas e conferidas. |
+| **RF17** | Registrar consumo de insumos | Registrar os materiais e as quantidades utilizados nos atendimentos, descontando essas quantidades do estoque. |
+| **RF18** | Registrar movimentações e fechamento de caixa | Registrar entradas e saídas financeiras, incluindo repasses aos barbeiros, e realizar a conferência diária por forma de pagamento, registrando saldo inicial, saldo apurado, saldo conferido e eventuais diferenças. |
 
 ### 🛡️ 3.2 Requisitos Não Funcionais
 
@@ -187,27 +196,32 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 | **RN01** | Identificação do atendimento | Cada agendamento deve estar vinculado a um cliente, um barbeiro e à unidade. |
 | **RN02** | Responsável pelo atendimento | Um único barbeiro realiza todos os procedimentos escolhidos pelo cliente, incluindo os serviços dos pacotes. |
 | **RN03** | Serviços e pacotes | Cada agendamento deve incluir pelo menos um serviço avulso ou pacote. Conforme o DER, cada pacote reúne dois ou mais serviços avulsos. |
-| **RN04** | Preços | Os serviços avulsos custam a partir de **R$ 50,00**. Os pacotes possuem preços próprios cadastrados. |
+| **RN04** | Preços | Os serviços avulsos possuem preços cadastrados a partir de R$ 50, exceto os cortes com valores diferenciados previstos na RN15. Pacotes e produtos possuem preços próprios cadastrados. |
 | **RN05** | Canais de agendamento | As marcações podem ser feitas pelo **Trinks, WhatsApp ou presencialmente**, com registro do canal utilizado. |
 | **RN06** | Encaixes | Clientes sem horário marcado podem ser atendidos quando houver disponibilidade. O atendimento deve ser registrado como **encaixe**, pelo canal **presencial**. |
 | **RN07** | Pagamento | Cada atendimento permite um único pagamento, em **Pix, crédito, débito ou dinheiro**, sem divisão entre formas. Devem ser registrados o valor, a data e a hora do pagamento e a forma utilizada. |
 | **RN08** | Política de faltas sem aviso | Quando o cliente não comparecer ao horário reservado e não tiver solicitado cancelamento, o agendamento deve ser marcado como falta. Não são aplicadas multas nem bloqueios automáticos, e a recepcionista pode entrar em contato para oferecer uma nova marcação. |
 | **RN09** | Cancelamento | Cada agendamento pode ter um cancelamento, solicitado pelo **Trinks, WhatsApp ou presencialmente**, com registro da data, da hora e do canal. |
 | **RN10** | Barbeiro não fumante | Essa característica deve constar no cadastro do profissional, permitindo considerar a preferência do cliente na escolha do barbeiro. |
-| **RN11** | Comissão do barbeiro | Cada agendamento realizado e pago gera uma comissão mínima de R$ 25 para o barbeiro responsável. O valor pode aumentar conforme os serviços adicionais ou pacotes incluídos, sendo conferido pelo gerente antes do repasse. Agendamentos cancelados ou com falta não geram comissão. |
+| **RN11** | Comissão do barbeiro | Cada agendamento concluído e pago gera uma comissão de 50% do valor recebido pelos serviços e pacotes realizados. Agendamentos cancelados ou com falta e vendas de produtos não geram essa comissão. O gerente confere os valores antes do repasse. |
+| **RN12** | Venda de produtos | Cada venda deve registrar os produtos, o número de unidades de cada item, os preços e a forma de pagamento. Somente podem ser vendidas quantidades disponíveis em estoque. |
+| **RN13** | Compra e recebimento | As compras devem ser autorizadas pelo gerente. Somente os produtos e materiais efetivamente recebidos e conferidos devem ser acrescentados ao estoque. |
+| **RN14** | Movimentação de estoque | As entradas por compra aumentam o estoque, enquanto as vendas e o consumo nos atendimentos reduzem as quantidades disponíveis. Produtos vencidos não podem ser vendidos nem utilizados. |
+| **RN15** | Fechamento de caixa | Ao final do expediente, o gerente confere o saldo inicial, os recebimentos e as saídas efetivamente realizadas, incluindo repasses aos barbeiros. Eventuais diferenças devem ser registradas e justificadas antes da confirmação do fechamento. |
+| **RN16** | Registro dos repasses | Cada repasse deve identificar o barbeiro, as comissões quitadas, a data e o valor pago. Uma mesma comissão não pode ser paga mais de uma vez. |
 
 ### 4.2 Restrições Organizacionais
 
 | Código | Restrição | Aplicação |
 | :--- | :--- | :--- |
-| **RN12** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
-| **RN13** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
-| **RN14** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
-| **RN15** | Preços diferenciados para cortes | O corte avulso custa R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Essas condições não se estendem a serviços adicionais ou pacotes. Os demais cortes mantêm o preço cadastrado, a partir de R$ 50. |
-| **RN16** | Normas sanitárias | Manter o ambiente e os equipamentos limpos, realizar a limpeza, desinfecção e esterilização dos equipamentos conforme necessário e utilizar produtos regularizados e dentro da validade. As lâminas de barbear devem ser de uso único e descartadas em recipiente próprio para materiais perfurocortantes. |
-| **RN17** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
-| **RN18** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
-| **RN19** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
+| **RN17** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
+| **RN18** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
+| **RN19** | Disponibilidade do barbeiro | Agendamentos e encaixes devem respeitar os dias de trabalho, horários, intervalos e folgas do barbeiro, sem sobreposição de atendimentos. A reserva deve considerar a duração de todos os procedimentos escolhidos. |
+| **RN20** | Preços diferenciados para cortes | O corte avulso custa R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Essas condições não se estendem a serviços adicionais ou pacotes. Os demais cortes mantêm o preço cadastrado, a partir de R$ 50. |
+| **RN21** | Normas sanitárias | Manter o ambiente e os equipamentos limpos, realizar a limpeza, desinfecção e esterilização dos equipamentos conforme necessário e utilizar produtos regularizados e dentro da validade. As lâminas de barbear devem ser de uso único e descartadas em recipiente próprio para materiais perfurocortantes. |
+| **RN22** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
+| **RN23** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
+| **RN24** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
 
 
 ---
