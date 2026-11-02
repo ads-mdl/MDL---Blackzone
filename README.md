@@ -259,92 +259,52 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
 
 | **Entidade** | **Descrição** | **Atributos** |
 |---|---|---|
-| **UNIDADE** | Representa a unidade da barbearia e seus horários de funcionamento. | **id_unidade**; nome; endereço (composto); WhatsApp; status; horário_funcionamento (composto e multivalorado). |
-| **CLIENTE** | Armazena os dados dos clientes atendidos por agendamento ou encaixe. | **id_cliente**; nome; telefone; e-mail (opcional). |
-| **BARBEIRO** | Registra os profissionais, suas características e escalas de trabalho. | **id_barbeiro**; nome; telefone; não_fumante; status; escala_trabalho (composto e multivalorado). |
-| **SERVIÇO / PACOTE** | Reúne os serviços avulsos e os pacotes. O atributo tipo diferencia as opções, e o relacionamento CONTÉM representa a composição dos pacotes. | **id_serviço_pacote**; nome; tipo; categoria; descrição; duração_estimada; preço_atual; validade (opcional, para pacotes); status. |
-| **AGENDAMENTO** | Registra reservas e encaixes, os serviços escolhidos e a situação do atendimento, incluindo os dados de pagamento e cancelamento quando ocorrerem. | **id_agendamento**; data; hora_início; hora_fim; tipo_agendamento; canal; status; categoria_preço_corte; valor_total_cobrado; observação (opcional). **Pagamento — campos opcionais:** data_hora_pagamento; valor_pago; forma_pagamento. **Cancelamento — campos opcionais:** data_hora_cancelamento; canal_cancelamento. |
-| **COMISSÃO** | Registra a comissão do barbeiro referente a um agendamento concluído e pago. Agendamentos apenas marcados, cancelados ou com falta não geram comissão. | **id_comissão**; data_hora_geração; valor_base; percentual_aplicado; valor_comissão (derivado). |
-| **REPASSE** | Registra o pagamento de uma ou mais comissões ao mesmo barbeiro. | **id_repasse**; data_hora; valor_total; forma_pagamento; observação (opcional). |
-| **PRODUTO / INSUMO** | Mantém o cadastro dos produtos vendidos no balcão e dos materiais consumidos nos atendimentos. | **id_produto_insumo**; nome; descrição; finalidade; unidade_medida; preço_venda (quando destinado à venda); controla_validade; status; quantidade_estoque (derivado). |
-| **LOTE** | Identifica os lotes de produtos e insumos, permitindo acompanhar suas quantidades e a validade quando aplicável. | **id_lote**; código_lote; data_validade (quando aplicável); quantidade_disponível (derivado). |
-| **COMPRA** | Registra as compras de produtos e insumos, incluindo autorização, fornecedor e situação. | **id_compra**; data_compra; data_autorização; fornecedor; situação; valor_total (derivado); observação (opcional). |
-| **ITEM_COMPRA** | Detalha cada produto ou insumo de uma compra, com sua quantidade e preço praticado. | **id_item_compra**; quantidade_comprada; preço_unitário; subtotal (derivado). |
-| **VENDA** | Registra as vendas de produtos no balcão e os dados do pagamento quando realizado. | **id_venda**; data_hora; situação; valor_total (derivado); data_hora_pagamento (opcional); valor_pago (opcional); forma_pagamento (opcional). |
-| **ITEM_VENDA** | Detalha cada produto de uma venda, indicando o número de unidades vendidas e o preço praticado. | **id_item_venda**; quantidade; preço_unitário_praticado; subtotal (derivado). |
-| **MOVIMENTAÇÃO_ESTOQUE** | Registra entradas por compras e saídas por vendas ou consumo, identificando o lote movimentado. | **id_movimentação_estoque**; data_hora; tipo_movimentação; motivo; quantidade; observação (opcional). |
-| **FECHAMENTO_CAIXA** | Registra a conferência dos recebimentos, das saídas e dos saldos por forma de pagamento, incluindo eventuais diferenças. | **id_fechamento**; data_referência; data_hora_fechamento; situação; conferência_por_forma (composto e multivalorado); justificativa_diferença (opcional). |
-| **MOVIMENTAÇÃO_FINANCEIRA** | Registra entradas e saídas financeiras originadas de pagamentos de atendimentos, vendas, compras e repasses aos barbeiros. | **id_movimentação_financeira**; data_hora; tipo_movimentação; natureza; valor; forma_pagamento; observação (opcional). |
+| **1. UNIDADE** | Representa a unidade da barbearia e seus horários de funcionamento. | **id_unidade**; nome; endereço (composto); WhatsApp; status; horário_funcionamento (composto e multivalorado). |
+| **2. CLIENTE** | Armazena os dados dos clientes atendidos por agendamento ou encaixe. | **id_cliente**; nome; telefone; e-mail (opcional). |
+| **3. BARBEIRO** | Registra os profissionais, suas características e escalas de trabalho. | **id_barbeiro**; nome; telefone; não_fumante; status; escala_trabalho (composto e multivalorado). |
+| **4. SERVIÇO / PACOTE** | Reúne os serviços avulsos e os pacotes. O atributo tipo diferencia as opções, e o relacionamento CONTÉM representa a composição dos pacotes. | **id_serviço_pacote**; nome; tipo; categoria; descrição; duração_estimada; preço_atual; validade (opcional, para pacotes); status. |
+| **5. AGENDAMENTO** | Registra reservas e encaixes, os serviços escolhidos e a situação do atendimento, incluindo os dados de pagamento e cancelamento quando ocorrerem. | **id_agendamento**; data; hora_início; hora_fim; tipo_agendamento; canal; status; categoria_preço_corte; valor_total_cobrado; observação (opcional). **Pagamento — campos opcionais:** data_hora_pagamento; valor_pago; forma_pagamento. **Cancelamento — campos opcionais:** data_hora_cancelamento; canal_cancelamento. |
+| **6. COMISSÃO** | Registra a comissão do barbeiro referente a um agendamento concluído e pago. Agendamentos apenas marcados, cancelados ou com falta não geram comissão. | **id_comissão**; data_hora_geração; valor_base; percentual_aplicado; valor_comissão (derivado). |
+| **7. REPASSE** | Registra o pagamento de uma ou mais comissões ao mesmo barbeiro. | **id_repasse**; data_hora; valor_total; forma_pagamento; observação (opcional). |
+| **8. PRODUTO / INSUMO** | Mantém o cadastro dos produtos vendidos no balcão e dos materiais consumidos nos atendimentos. | **id_produto_insumo**; nome; descrição; finalidade; unidade_medida; preço_venda (quando destinado à venda); controla_validade; status; quantidade_estoque (derivado). |
+| **9. LOTE** | Identifica os lotes de produtos e insumos, permitindo acompanhar suas quantidades e a validade quando aplicável. | **id_lote**; código_lote; data_validade (quando aplicável); quantidade_disponível (derivado). |
+| **10. COMPRA** | Registra as compras de produtos e insumos, incluindo autorização, fornecedor e situação. | **id_compra**; data_compra; data_autorização; fornecedor; situação; valor_total (derivado); observação (opcional). |
+| **11. ITEM_COMPRA** | Detalha cada produto ou insumo de uma compra, com sua quantidade e preço praticado. | **id_item_compra**; quantidade_comprada; preço_unitário; subtotal (derivado). |
+| **12. VENDA** | Registra as vendas de produtos no balcão e os dados do pagamento quando realizado. | **id_venda**; data_hora; situação; valor_total (derivado); data_hora_pagamento (opcional); valor_pago (opcional); forma_pagamento (opcional). |
+| **13. ITEM_VENDA** | Detalha cada produto de uma venda, indicando o número de unidades vendidas e o preço praticado. | **id_item_venda**; quantidade; preço_unitário_praticado; subtotal (derivado). |
+| **14. MOVIMENTAÇÃO_ESTOQUE** | Registra entradas por compras e saídas por vendas ou consumo, identificando o lote movimentado. | **id_movimentação_estoque**; data_hora; tipo_movimentação; motivo; quantidade; observação (opcional). |
+| **15. FECHAMENTO_CAIXA** | Registra a conferência dos recebimentos, das saídas e dos saldos por forma de pagamento, incluindo eventuais diferenças. | **id_fechamento**; data_referência; data_hora_fechamento; situação; conferência_por_forma (composto e multivalorado); justificativa_diferença (opcional). |
+| **16. MOVIMENTAÇÃO_FINANCEIRA** | Registra entradas e saídas financeiras originadas de pagamentos de atendimentos, vendas, compras e repasses aos barbeiros. | **id_movimentação_financeira**; data_hora; tipo_movimentação; natureza; valor; forma_pagamento; observação (opcional). |
 
 
 ## Relacionamentos Pertinentes
 
-## 1. UNIDADE ↔ BARBEIRO (1 : N)
-- Regra de Negócio: A unidade possui vários barbeiros cadastrados, mas cada barbeiro trabalha em apenas uma unidade.
-- Como se conectam: A chave primária ID_UNIDADE da tabela UNIDADE entra como Chave Estrangeira (ID_UNIDADE) na tabela BARBEIRO.
-
-
-## 2. UNIDADE ↔ AGENDAMENTO (1 : N)
-- Regra de Negócio: A unidade sedia diversos agendamentos/encaixes ao longo do tempo.
-- Como se conectam: O ID_UNIDADE entra como Chave Estrangeira (ID_UNIDADE) na tabela AGENDAMENTO.
-
-
-## 3. CLIENTE ↔ AGENDAMENTO (1 : N)
-- Regra de Negócio: Um cliente pode realizar vários agendamentos ou encaixes, mas cada agendamento pertence a exatamente um cliente.
-- Como se conectam: A chave primária ID_CLIENTE da tabela CLIENTE entra como Chave Estrangeira (ID_CLIENTE) na tabela AGENDAMENTO.
-
-
-## 4. BARBEIRO ↔ AGENDAMENTO (1 : N)
-- Regra de Negócio: Um barbeiro atende múltiplos agendamentos ao longo do dia. Cada agendamento é atribuído a apenas um barbeiro (Regra Operacional RN01).
-- Como se conectam: A chave primária ID_BARBEIRO da tabela BARBEIRO entra como Chave Estrangeira (ID_BARBEIRO) na tabela AGENDAMENTO.
-
-
-## 5. BARBEIRO ↔ SERVICO (M : N)
-- Regra de Negócio: Um barbeiro pode executar vários tipos de serviços, e um mesmo serviço pode ser prestado por diversos barbeiros da equipe.
-- Como se conectam: Como é uma relação Muitos-para-Muitos (M:N), cria-se uma tabela associativa intermediária chamada BARBEIRO_SERVICO:
-
-- Contém a PK composta ou individual (ID_BARBEIRO, ID_SERVICO).
-
-- ID_BARBEIRO (FK referenciando BARBEIRO).
-
-- ID_SERVICO (FK referenciando SERVICO).
-
-
-## 6. PACOTE ↔ SERVICO (M : N)
-- Regra de Negócio: Um pacote é composto por 2 ou mais serviços avulsos, e um serviço avulso pode fazer parte de vários pacotes diferentes.
-- Como se conectam: Cria-se a tabela associativa intermediária PACOTE_SERVICO:
-
-- ID_PACOTE (FK referenciando PACOTE).
-
-- ID_SERVICO (FK referenciando SERVICO).
-
-
-## 7. AGENDAMENTO ↔ SERVICO (M : N)
-- Regra de Negócio: Um atendimento/agendamento pode conter um ou mais serviços avulsos selecionados pelo cliente.
- - Como se conectam: Cria-se a tabela associativa intermediária AGENDAMENTO_SERVICO:
-
- - ID_AGENDAMENTO (FK referenciando AGENDAMENTO).
-
-- ID_SERVICO (FK referenciando SERVICO).
-
-
-## 8. AGENDAMENTO ↔ PACOTE (M : N)
-- Regra de Negócio: Um atendimento/agendamento pode incluir um ou mais pacotes promocionais.
-- Como se conectam: Cria-se a tabela associativa intermediária AGENDAMENTO_PACOTE:
-
-- ID_AGENDAMENTO (FK referenciando AGENDAMENTO).
-
-- ID_PACOTE (FK referenciando PACOTE).
-
-
-## 9. AGENDAMENTO ↔ PAGAMENTO (1 : 0..1)
-- Regra de Negócio: Um agendamento concluído possui no máximo um pagamento associado com uma única forma de pagamento (Regra Operacional RN02).
-- Como se conectam: A chave primária ID_AGENDAMENTO entra como Chave Estrangeira (ID_AGENDAMENTO) (com restrição de valor único/UNIQUE) na tabela PAGAMENTO.
-
-
-## 10. AGENDAMENTO ↔ CANCELAMENTO (1 : 0..1)
-- Regra de Negócio: Um agendamento cancelado possui exatamente um registro associado descrevendo a data, hora e canal da desistência.
-- Como se conectam: O ID_AGENDAMENTO entra como Chave Estrangeira (ID_AGENDAMENTO) (UNIQUE) na tabela CANCELAMENTO.
+| **Relacionamento** | **Primeira entidade** | **Segunda entidade** | **Regra de negócio** |
+|---|---|---|---|
+| **1. UNIDADE MANTÉM BARBEIRO** | UNIDADE **(0,N)** | BARBEIRO **(1,1)** | A unidade pode possuir vários barbeiros cadastrados. Cada barbeiro pertence a uma única unidade. |
+| **2. UNIDADE RECEBE AGENDAMENTO** | UNIDADE **(0,N)** | AGENDAMENTO **(1,1)** | A unidade pode receber vários agendamentos e encaixes. Cada agendamento pertence a uma única unidade. |
+| **3. CLIENTE REALIZA AGENDAMENTO** | CLIENTE **(0,N)** | AGENDAMENTO **(1,1)** | Um cliente pode estar cadastrado sem agendamentos ou realizar vários. Cada agendamento pertence a exatamente um cliente. |
+| **4. BARBEIRO EXECUTA SERVIÇO / PACOTE** | BARBEIRO **(1,N)** | SERVIÇO / PACOTE **(0,N)** | Cada barbeiro executa um ou mais serviços avulsos. Um serviço avulso pode estar associado a nenhum ou vários barbeiros. A participação nesse relacionamento é restrita aos registros do tipo serviço avulso. |
+| **5. AGENDAMENTO INCLUI SERVIÇO / PACOTE** | AGENDAMENTO **(1,N)** | SERVIÇO / PACOTE **(0,N)** | Cada agendamento inclui pelo menos um serviço avulso ou pacote. Uma opção do catálogo pode não ter sido escolhida ou aparecer em vários agendamentos. |
+| **6. SERVIÇO / PACOTE CONTÉM SERVIÇO / PACOTE** | Papel **pacote (2,N)** | Papel **serviço avulso (0,N)** | Cada pacote contém dois ou mais serviços avulsos. Um serviço avulso pode integrar nenhum ou vários pacotes. Os dois papéis pertencem à mesma entidade e são diferenciados pelo atributo tipo. |
+| **7. AGENDAMENTO GERA COMISSÃO** | AGENDAMENTO **(0,1)** | COMISSÃO **(1,1)** | Um agendamento pode não gerar comissão ou gerar uma única comissão. Cada comissão corresponde a exatamente um agendamento. A geração ocorre somente quando o atendimento estiver concluído e pago. |
+| **8. BARBEIRO RECEBE COMISSÃO** | BARBEIRO **(0,N)** | COMISSÃO **(1,1)** | Um barbeiro pode não possuir comissões ou receber várias. Cada comissão pertence a um único barbeiro. |
+| **9. BARBEIRO RECEBE REPASSE** | BARBEIRO **(0,N)** | REPASSE **(1,1)** | Um barbeiro pode receber vários repasses ao longo do tempo. Cada repasse é destinado a exatamente um barbeiro. |
+| **10. REPASSE QUITA COMISSÃO** | REPASSE **(1,N)** | COMISSÃO **(0,1)** | Cada repasse quita uma ou mais comissões. Uma comissão pode estar pendente ou ser quitada por um único repasse, sem pagamento duplicado. |
+| **11. COMPRA CONTÉM ITEM_COMPRA** | COMPRA **(1,N)** | ITEM_COMPRA **(1,1)** | Cada compra contém um ou mais itens. Cada item de compra pertence a uma única compra. |
+| **12. ITEM_COMPRA REFERE-SE A PRODUTO / INSUMO** | ITEM_COMPRA **(1,1)** | PRODUTO / INSUMO **(0,N)** | Cada item de compra identifica um único produto ou insumo. Um produto ou insumo pode aparecer em vários itens de compra ao longo do tempo. |
+| **13. VENDA CONTÉM ITEM_VENDA** | VENDA **(1,N)** | ITEM_VENDA **(1,1)** | Cada venda contém um ou mais itens. Cada item de venda pertence a uma única venda. |
+| **14. ITEM_VENDA REFERE-SE A PRODUTO / INSUMO** | ITEM_VENDA **(1,1)** | PRODUTO / INSUMO **(0,N)** | Cada item de venda identifica um único produto destinado à venda. Um produto pode aparecer em vários itens de venda ao longo do tempo. |
+| **15. PRODUTO / INSUMO POSSUI LOTE** | PRODUTO / INSUMO **(0,N)** | LOTE **(1,1)** | Um produto ou insumo pode estar cadastrado sem lotes ou possuir vários. Cada lote pertence a um único produto ou insumo. |
+| **16. LOTE REGISTRA MOVIMENTAÇÃO_ESTOQUE** | LOTE **(0,N)** | MOVIMENTAÇÃO_ESTOQUE **(1,1)** | Um lote pode possuir várias movimentações de entrada e saída. Cada movimentação de estoque afeta exatamente um lote. |
+| **17. ITEM_COMPRA ORIGINA ENTRADA EM MOVIMENTAÇÃO_ESTOQUE** | ITEM_COMPRA **(0,N)** | MOVIMENTAÇÃO_ESTOQUE **(0,1)** | Um item de compra pode ainda não ter sido recebido ou originar várias entradas, conforme os recebimentos e lotes envolvidos. Cada entrada por compra está vinculada a um único item de compra. |
+| **18. ITEM_VENDA ORIGINA SAÍDA EM MOVIMENTAÇÃO_ESTOQUE** | ITEM_VENDA **(0,N)** | MOVIMENTAÇÃO_ESTOQUE **(0,1)** | Um item de venda pode originar várias saídas quando envolver diferentes lotes. Cada saída por venda está vinculada a um único item de venda. |
+| **19. AGENDAMENTO ORIGINA MOVIMENTAÇÃO_FINANCEIRA** | AGENDAMENTO **(0,1)** | MOVIMENTAÇÃO_FINANCEIRA **(0,1)** | Um agendamento ainda não pago não origina recebimento. Quando pago, origina uma única movimentação financeira de entrada, vinculada a esse agendamento. |
+| **20. VENDA ORIGINA MOVIMENTAÇÃO_FINANCEIRA** | VENDA **(0,1)** | MOVIMENTAÇÃO_FINANCEIRA **(0,1)** | Uma venda ainda não paga não origina recebimento. Quando paga, origina uma única movimentação financeira de entrada, vinculada a essa venda. |
+| **21. COMPRA ORIGINA MOVIMENTAÇÃO_FINANCEIRA** | COMPRA **(0,N)** | MOVIMENTAÇÃO_FINANCEIRA **(0,1)** | Uma compra pode ainda não ter sido paga ou originar várias saídas financeiras, conforme os desembolsos realizados. Cada saída por compra corresponde a uma única compra. |
+| **22. REPASSE ORIGINA MOVIMENTAÇÃO_FINANCEIRA** | REPASSE **(1,1)** | MOVIMENTAÇÃO_FINANCEIRA **(0,1)** | Cada repasse realizado origina exatamente uma saída financeira. Uma movimentação financeira corresponde a, no máximo, um repasse. |
+| **23. FECHAMENTO_CAIXA CONCILIA MOVIMENTAÇÃO_FINANCEIRA** | FECHAMENTO_CAIXA **(0,N)** | MOVIMENTAÇÃO_FINANCEIRA **(0,1)** | Um fechamento pode reunir nenhuma ou várias movimentações financeiras. Uma movimentação pode estar pendente de conciliação ou pertencer a um único fechamento. |
+| **24. UNIDADE POSSUI FECHAMENTO_CAIXA** | UNIDADE **(0,N)** | FECHAMENTO_CAIXA **(1,1)** | A unidade pode possuir vários fechamentos de caixa ao longo do tempo. Cada fechamento pertence a uma única unidade. |
 
 
 
