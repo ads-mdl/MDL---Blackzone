@@ -165,7 +165,7 @@ Os requisitos não funcionais definem as condições de qualidade esperadas para
 | Código | Requisito | Descrição |
 | :---: | :--- | :--- |
 | **RNF01** | Facilidade de uso | Apresentar informações e mensagens em português, com campos identificados de forma clara e navegação simples para a equipe. |
-| **RNF02** | Segurança e privacidade | Restringir o acesso aos dados de clientes, agendamentos e pagamentos às pessoas autorizadas pela unidade. |
+| **RNF02** | Segurança, privacidade e LGPD | Proteger os dados dos clientes conforme a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), coletando apenas o necessário para cadastro e atendimento, informando a finalidade de uso e restringindo o acesso às pessoas autorizadas. Permitir solicitações de acesso, correção e exclusão dos dados, respeitando as obrigações legais de conservação. |
 | **RNF03** | Desempenho | Apresentar os resultados das consultas de clientes e horários em até três segundos, em condições normais de uso. |
 | **RNF04** | Disponibilidade | Manter o sistema disponível durante o funcionamento da unidade, de segunda-feira a sábado, das 09h às 21h. |
 | **RNF05** | Confiabilidade e recuperação | Preservar os dados salvos e contar com cópias de segurança e um procedimento de recuperação em caso de falha. |
@@ -199,6 +199,7 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 | **RN12** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
 | **RN13** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
 | **RN14** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
+| **RN15** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
 
 
 ---
