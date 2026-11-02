@@ -191,22 +191,23 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 | **RN05** | Canais de agendamento | As marcações podem ser feitas pelo **Trinks, WhatsApp ou presencialmente**, com registro do canal utilizado. |
 | **RN06** | Encaixes | Clientes sem horário marcado podem ser atendidos quando houver disponibilidade. O atendimento deve ser registrado como **encaixe**, pelo canal **presencial**. |
 | **RN07** | Pagamento | Cada atendimento permite um único pagamento, em **Pix, crédito, débito ou dinheiro**, sem divisão entre formas. Devem ser registrados o valor, a data e a hora do pagamento e a forma utilizada. |
-| **RN08** | Cancelamento | Cada agendamento pode ter um cancelamento, solicitado pelo **Trinks, WhatsApp ou presencialmente**, com registro da data, da hora e do canal. |
-| **RN09** | Barbeiro não fumante | Essa característica deve constar no cadastro do profissional, permitindo considerar a preferência do cliente na escolha do barbeiro. |
-| **RN10** | Comissão do barbeiro | Cada agendamento realizado e pago gera uma comissão mínima de R$ 25 para o barbeiro responsável. O valor pode aumentar conforme os serviços adicionais ou pacotes incluídos, sendo conferido pelo gerente antes do repasse. Agendamentos cancelados ou com falta não geram comissão. |
+| **RN08** | Política de faltas sem aviso | Quando o cliente não comparecer ao horário reservado e não tiver solicitado cancelamento, o agendamento deve ser marcado como falta. Não são aplicadas multas nem bloqueios automáticos, e a recepcionista pode entrar em contato para oferecer uma nova marcação. |
+| **RN09** | Cancelamento | Cada agendamento pode ter um cancelamento, solicitado pelo **Trinks, WhatsApp ou presencialmente**, com registro da data, da hora e do canal. |
+| **RN10** | Barbeiro não fumante | Essa característica deve constar no cadastro do profissional, permitindo considerar a preferência do cliente na escolha do barbeiro. |
+| **RN11** | Comissão do barbeiro | Cada agendamento realizado e pago gera uma comissão mínima de R$ 25 para o barbeiro responsável. O valor pode aumentar conforme os serviços adicionais ou pacotes incluídos, sendo conferido pelo gerente antes do repasse. Agendamentos cancelados ou com falta não geram comissão. |
 
 ### 4.2 Restrições Organizacionais
 
 | Código | Restrição | Aplicação |
 | :--- | :--- | :--- |
-| **RN11** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
-| **RN12** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
-| **RN13** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
-| **RN14** | Preços diferenciados para cortes | O corte avulso custa R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Essas condições não se estendem a serviços adicionais ou pacotes. Os demais cortes mantêm o preço cadastrado, a partir de R$ 50. |
-| **RN15** | Normas sanitárias | Manter o ambiente e os equipamentos limpos, realizar a limpeza, desinfecção e esterilização dos equipamentos conforme necessário e utilizar produtos regularizados e dentro da validade. As lâminas de barbear devem ser de uso único e descartadas em recipiente próprio para materiais perfurocortantes. |
-| **RN16** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
-| **RN17** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
-| **RN18** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
+| **RN12** | Uma única unidade | O projeto controla somente a **Black Zone Celso 5065**, mantendo os cadastros e atendimentos vinculados a ela. |
+| **RN13** | Horário de funcionamento | Os atendimentos devem começar e terminar entre **09h e 21h, de segunda-feira a sábado**. Aos domingos, a unidade permanece fechada. |
+| **RN14** | Disponibilidade do barbeiro | Um profissional não pode ter atendimentos com horários sobrepostos. A reserva deve considerar o tempo necessário para todos os procedimentos escolhidos. |
+| **RN15** | Preços diferenciados para cortes | O corte avulso custa R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Essas condições não se estendem a serviços adicionais ou pacotes. Os demais cortes mantêm o preço cadastrado, a partir de R$ 50. |
+| **RN16** | Normas sanitárias | Manter o ambiente e os equipamentos limpos, realizar a limpeza, desinfecção e esterilização dos equipamentos conforme necessário e utilizar produtos regularizados e dentro da validade. As lâminas de barbear devem ser de uso único e descartadas em recipiente próprio para materiais perfurocortantes. |
+| **RN17** | Prazo de cancelamento | Para o projeto, considera-se antecedência mínima de **duas horas**. Assim, um atendimento marcado para as 18h pode ser cancelado até as 16h. |
+| **RN18** | Compatibilidade entre barbeiro e serviços | O agendamento só pode ser feito com um barbeiro que realize todos os serviços escolhidos pelo cliente, incluindo os que compõem os pacotes. |
+| **RN19** | Proteção dos dados dos clientes | Coletar apenas os dados necessários ao cadastro e ao atendimento, informando ao cliente a finalidade de uso. Permitir solicitações de acesso, correção e exclusão, respeitando as hipóteses legais de conservação. Manter os dados somente pelo período necessário à finalidade ou ao cumprimento de obrigação legal. |
 
 
 ---
