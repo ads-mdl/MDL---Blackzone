@@ -257,16 +257,24 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
 ## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
 
 
-| Entidade | Descrição | Atributos |
-| :--- | :--- | :--- |
-| *UNIDADE* | *Representa a infraestrutura da franquia Black Zone e centraliza as regras de funcionamento local.* | *ID_UNIDADE - NM_UNIDADE - DS_ENDERECO - DS_TELEFONE - HR_ABERTURA - HR_FECHAMENTO* |
-| *CLIENTE* | *Armazena os dados dos consumidores atendidos por agendamento prévio ou encaixe.* | *ID_CLIENTE - NM_CLIENTE - DS_TELEFONE - DS_EMAIL* |
-| *BARBEIRO* | *Armazena os dados dos profissionais responsáveis pela execução dos serviços, incluindo características como ser não fumante.* | *ID_BARBEIRO - NM_BARBEIRO - DS_TELEFONE - FL_NAO_FUMANTE* |
-| *SERVIÇO* | *Representa os procedimentos avulsos de estética e cuidados oferecidos pela barbearia.* | *ID_SERVICO - NM_SERVICO - DS_CATEGORIA - NR_DURACAO_MIN - VL_SERVICO* | 
-| *PACOTE* | *Estrutura que agrupa dois ou mais serviços em uma oferta combinada com valor diferenciado.* | *ID_PACOTE - NM_PACOTE - DS_PACOTE - VL_PACOTE* |
-| *AGENDAMENTO* | *Entidade central do modelo. Representa tanto as reservas antecipadas quanto os encaixes em tempo real, conectando cliente, barbeiro e serviços.* | *ID_AGENDAMENTO - DT_AGENDAMENTO - HR_AGENDAMENTO - HR_INICIO - HR_FIM_ESTIMADO - TP_ATENDIMENTO - DS_CANAL - ST_AGENDAMENTO* |
-| *PAGAMENTO* | *Entidade fraca dependente de AGENDAMENTO, criada para registrar a liquidação financeira de um atendimento efetuado.* | *ID_PAGAMENTO - DT_PAGAMENTO - HR_PAGAMENTO - VL_PAGO - TP_FORMA_PAGAMENTO* |
-| *CANCELAMENTO* | *Entidade fraca dependente de AGENDAMENTO, destinada a registrar desistências e liberar a agenda.* | *ID_CANCELAMENTO - DT_CANCELAMENTO - HR_CANCELAMENTO - DS_CANAL_CANC* |
+| **Entidade** | **Descrição** | **Atributos** |
+|---|---|---|
+| **UNIDADE** | Representa a unidade da barbearia e seus horários de funcionamento. | **id_unidade**; nome; endereço (composto); WhatsApp; status; horário_funcionamento (composto e multivalorado). |
+| **CLIENTE** | Armazena os dados dos clientes atendidos por agendamento ou encaixe. | **id_cliente**; nome; telefone; e-mail (opcional). |
+| **BARBEIRO** | Registra os profissionais, suas características e escalas de trabalho. | **id_barbeiro**; nome; telefone; não_fumante; status; escala_trabalho (composto e multivalorado). |
+| **SERVIÇO / PACOTE** | Reúne os serviços avulsos e os pacotes. O atributo tipo diferencia as opções, e o relacionamento CONTÉM representa a composição dos pacotes. | **id_serviço_pacote**; nome; tipo; categoria; descrição; duração_estimada; preço_atual; validade (opcional, para pacotes); status. |
+| **AGENDAMENTO** | Registra reservas e encaixes, os serviços escolhidos e a situação do atendimento, incluindo os dados de pagamento e cancelamento quando ocorrerem. | **id_agendamento**; data; hora_início; hora_fim; tipo_agendamento; canal; status; categoria_preço_corte; valor_total_cobrado; observação (opcional). **Pagamento — campos opcionais:** data_hora_pagamento; valor_pago; forma_pagamento. **Cancelamento — campos opcionais:** data_hora_cancelamento; canal_cancelamento. |
+| **COMISSÃO** | Registra a comissão do barbeiro referente a um agendamento concluído e pago. Agendamentos apenas marcados, cancelados ou com falta não geram comissão. | **id_comissão**; data_hora_geração; valor_base; percentual_aplicado; valor_comissão (derivado). |
+| **REPASSE** | Registra o pagamento de uma ou mais comissões ao mesmo barbeiro. | **id_repasse**; data_hora; valor_total; forma_pagamento; observação (opcional). |
+| **PRODUTO / INSUMO** | Mantém o cadastro dos produtos vendidos no balcão e dos materiais consumidos nos atendimentos. | **id_produto_insumo**; nome; descrição; finalidade; unidade_medida; preço_venda (quando destinado à venda); controla_validade; status; quantidade_estoque (derivado). |
+| **LOTE** | Identifica os lotes de produtos e insumos, permitindo acompanhar suas quantidades e a validade quando aplicável. | **id_lote**; código_lote; data_validade (quando aplicável); quantidade_disponível (derivado). |
+| **COMPRA** | Registra as compras de produtos e insumos, incluindo autorização, fornecedor e situação. | **id_compra**; data_compra; data_autorização; fornecedor; situação; valor_total (derivado); observação (opcional). |
+| **ITEM_COMPRA** | Detalha cada produto ou insumo de uma compra, com sua quantidade e preço praticado. | **id_item_compra**; quantidade_comprada; preço_unitário; subtotal (derivado). |
+| **VENDA** | Registra as vendas de produtos no balcão e os dados do pagamento quando realizado. | **id_venda**; data_hora; situação; valor_total (derivado); data_hora_pagamento (opcional); valor_pago (opcional); forma_pagamento (opcional). |
+| **ITEM_VENDA** | Detalha cada produto de uma venda, indicando o número de unidades vendidas e o preço praticado. | **id_item_venda**; quantidade; preço_unitário_praticado; subtotal (derivado). |
+| **MOVIMENTAÇÃO_ESTOQUE** | Registra entradas por compras e saídas por vendas ou consumo, identificando o lote movimentado. | **id_movimentação_estoque**; data_hora; tipo_movimentação; motivo; quantidade; observação (opcional). |
+| **FECHAMENTO_CAIXA** | Registra a conferência dos recebimentos, das saídas e dos saldos por forma de pagamento, incluindo eventuais diferenças. | **id_fechamento**; data_referência; data_hora_fechamento; situação; conferência_por_forma (composto e multivalorado); justificativa_diferença (opcional). |
+| **MOVIMENTAÇÃO_FINANCEIRA** | Registra entradas e saídas financeiras originadas de pagamentos de atendimentos, vendas, compras e repasses aos barbeiros. | **id_movimentação_financeira**; data_hora; tipo_movimentação; natureza; valor; forma_pagamento; observação (opcional). |
 
 
 ## Relacionamentos Pertinentes
