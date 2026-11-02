@@ -195,8 +195,6 @@ Os requisitos funcionais descrevem o que o sistema deve permitir que a equipe fa
 
 Os requisitos não funcionais definem as condições de qualidade esperadas para o uso do sistema.
 
-> **Validação:** os requisitos abaixo são propostas iniciais e devem ser confirmados com o responsável pela unidade, considerando a rotina e a infraestrutura disponível.
-
 | Código | Requisito | Descrição |
 | :---: | :--- | :--- |
 | **RNF01** | Facilidade de uso | Apresentar informações e mensagens em português, com campos identificados de forma clara e navegação simples para a equipe. |
@@ -306,41 +304,27 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
 | **23. FECHAMENTO_CAIXA CONCILIA MOVIMENTAÇÃO_FINANCEIRA** | FECHAMENTO_CAIXA **(0,N)** | MOVIMENTAÇÃO_FINANCEIRA **(0,1)** | Um fechamento pode reunir nenhuma ou várias movimentações financeiras. Uma movimentação pode estar pendente de conciliação ou pertencer a um único fechamento. |
 | **24. UNIDADE POSSUI FECHAMENTO_CAIXA** | UNIDADE **(0,N)** | FECHAMENTO_CAIXA **(1,1)** | A unidade pode possuir vários fechamentos de caixa ao longo do tempo. Cada fechamento pertence a uma única unidade. |
 
-**Restrições e políticas organizacionais aplicadas ao modelo
-As restrições abaixo complementam as cardinalidades do DER e descrevem condições que devem ser respeitadas nas operações da unidade.**
+## Restrições e políticas organizacionais aplicadas ao modelo
+
+As restrições abaixo complementam as cardinalidades do DER e descrevem condições que devem ser respeitadas nas operações da unidade.
 
 | **Restrição ou política** | **Regra aplicada** | **Impacto no modelo** |
 |---|---|---|
 | **1. Gestão de uma única unidade** | O projeto contempla exclusivamente a Black Zone Celso 5065, sem compartilhamento de agendas ou operações com outras franquias. | UNIDADE representa o estabelecimento atendido pelo sistema. O escopo local deve ser respeitado nos cadastros e nas operações; a existência dessa entidade, por si só, não garante o isolamento dos dados. |
-
 | **2. Habilitação do barbeiro** | O profissional responsável deve realizar todos os serviços escolhidos pelo cliente, inclusive os que compõem os pacotes. | O relacionamento EXECUTA associa BARBEIRO aos registros do tipo serviço avulso em SERVIÇO / PACOTE. Para verificar a compatibilidade com um pacote, devem ser considerados seus componentes no relacionamento CONTÉM. |
-
 | **3. Um único barbeiro por atendimento** | Todos os procedimentos de um atendimento são realizados pelo mesmo profissional. | A regra permanece como restrição operacional. O DER adotado não possui ligação direta entre BARBEIRO e AGENDAMENTO; portanto, não representa a atribuição do profissional no momento da reserva. A ligação por COMISSÃO identifica o barbeiro remunerado após a conclusão e o pagamento. |
-
 | **4. Pagamento único por atendimento** | Cada agendamento permite até um pagamento, utilizando apenas uma forma: Pix, crédito, débito ou dinheiro. Não é permitido dividir o pagamento entre modalidades. | Os atributos opcionais data_hora_pagamento, valor_pago e forma_pagamento permanecem em AGENDAMENTO. Quando o pagamento ocorre, seus dados devem ser preenchidos em conjunto. O recebimento origina uma única MOVIMENTAÇÃO_FINANCEIRA, correspondente ao mesmo pagamento. |
-
 | **5. Funcionamento, escala e disponibilidade** | Os atendimentos devem começar e terminar entre 09h e 21h, de segunda-feira a sábado, respeitando os dias de trabalho, intervalos e folgas do profissional. Não pode haver sobreposição de atendimentos do mesmo barbeiro. | horário_funcionamento, em UNIDADE, e escala_trabalho, em BARBEIRO, representam os horários disponíveis. AGENDAMENTO registra data, hora_início e hora_fim. A validação individual da agenda depende da identificação do profissional reservado, cuja ausência no desenho está indicada no item 3. |
-
 | **6. Registro de encaixes** | Clientes sem reserva podem ser atendidos quando houver disponibilidade, respeitando o funcionamento e a escala do profissional. | O atendimento é registrado em AGENDAMENTO com tipo_agendamento igual a encaixe e canal igual a presencial. |
-
 | **7. Cancelamento com antecedência mínima** | O cancelamento pode ser solicitado pelo Trinks, WhatsApp ou presencialmente, com antecedência mínima de duas horas. Cada agendamento admite até um cancelamento. | data_hora_cancelamento e canal_cancelamento são atributos opcionais de AGENDAMENTO, preenchidos quando o cancelamento é aceito. O status passa para cancelado e o horário é liberado. Não existe entidade CANCELAMENTO separada. |
-
 | **8. Faltas sem aviso** | Quando o cliente não comparece e não solicita cancelamento, o atendimento é registrado como falta. Não são aplicadas multas nem bloqueios automáticos. A recepcionista pode entrar em contato para remarcação. | O atributo status de AGENDAMENTO permite identificar a falta e diferenciá-la de um cancelamento. Agendamentos com falta não geram COMISSÃO. |
-
 | **9. Composição e preço dos pacotes** | Cada pacote reúne dois ou mais serviços avulsos e possui preço próprio, que pode diferir da soma dos preços individuais. Um pacote não contém outro pacote. | SERVIÇO / PACOTE reúne as duas opções, diferenciadas pelo atributo tipo. CONTÉM representa a composição: pacote contém de dois a vários avulsos, e cada avulso pode integrar nenhum ou vários pacotes. O preço próprio é registrado em preço_atual. |
-
 | **10. Aplicação dos preços dos cortes** | Os cortes seguem o preço cadastrado, a partir de R$ 50, com exceções de R$ 25 para crianças de até 12 anos e R$ 30 para adultos calvos. Essas condições não se estendem a serviços adicionais ou pacotes. | AGENDAMENTO registra categoria_preço_corte e valor_total_cobrado, preservando a categoria aplicada e o total cobrado no atendimento. SERVIÇO / PACOTE mantém os preços atuais do catálogo. |
-
 | **11. Geração da comissão** | A comissão corresponde a 50% do valor efetivamente pago pelos serviços e pacotes realizados. Só é gerada quando o atendimento estiver concluído e pago. Produtos vendidos, agendamentos apenas marcados, cancelamentos e faltas não geram comissão. | AGENDAMENTO participa de GERA com cardinalidade (0,1), e COMISSÃO com (1,1). Cada comissão registra valor_base, percentual_aplicado e valor_comissão derivado, além de estar associada a um único barbeiro. |
-
 | **12. Repasse das comissões** | Cada repasse quita uma ou mais comissões do mesmo barbeiro. Uma comissão não pode ser paga duas vezes. | REPASSE está associado a um único BARBEIRO e reúne uma ou mais COMISSÕES. Cada comissão pode estar pendente ou vinculada a um único repasse. O repasse realizado origina exatamente uma saída financeira. |
-
 | **13. Controle do estoque por lote** | Entradas por compras e saídas por vendas ou consumo devem identificar o lote e a quantidade movimentada. A validade é acompanhada quando aplicável. | Cada LOTE pertence a um PRODUTO / INSUMO, e cada MOVIMENTAÇÃO_ESTOQUE afeta um único lote. As quantidades disponíveis são derivadas das entradas e saídas registradas. |
-
 | **14. Origem das entradas e saídas de estoque** | Uma entrada por compra identifica o item recebido; uma saída por venda identifica o item vendido. Saídas por consumo nos atendimentos não são vinculadas a itens de compra ou venda. | ITEM_COMPRA e ITEM_VENDA podem originar várias movimentações, conforme os lotes envolvidos. Cada movimentação referencia, no máximo, um item de compra ou um item de venda, conforme sua finalidade, nunca ambos. A soma das movimentações deve corresponder à quantidade efetivamente recebida ou retirada. |
-
 | **15. Origem das movimentações financeiras** | Cada entrada ou saída financeira deve possuir uma única origem identificada. | Cada MOVIMENTAÇÃO_FINANCEIRA está vinculada a exatamente uma das entidades: AGENDAMENTO, VENDA, COMPRA ou REPASSE. As ligações são mutuamente exclusivas: não é permitido registrar uma movimentação sem origem ou com várias origens. |
-
 | **16. Fechamento e conciliação do caixa** | Ao final do expediente, o gerente confere os recebimentos e as saídas, incluindo repasses, e verifica eventuais diferenças antes de confirmar o saldo final. Uma movimentação não pode ser contabilizada em dois fechamentos. | FECHAMENTO_CAIXA pertence a uma única UNIDADE e reúne as movimentações conciliadas. Cada MOVIMENTAÇÃO_FINANCEIRA pode estar pendente ou associada a um único fechamento. conferência_por_forma registra os valores por modalidade de pagamento, e justificativa_diferença documenta as divergências quando existirem. |
 
 ---
