@@ -21,7 +21,7 @@ A organização escolhida para este estudo de caso é a **Barbearia Black Zone C
 > 📍 **Localização:** Bairro Tatuapé, São Paulo - SP  
 > 📅 **Fundação:** Ano de 2020 (durante a pandemia de COVID-19)  
 > 💼 **Natureza:** Estabelecimento privado, com fins lucrativos  
-> 🎯 **Foco do Projeto:** Gestão local e exclusiva desta unidade (clientes, barbeiros, serviços, agendamentos, pagamentos e cancelamentos).
+> 🎯 **Foco do Projeto:** Gestão local e exclusiva desta unidade, abrangendo clientes, barbeiros e suas escalas, serviços e pacotes, agendamentos, faltas, pagamentos, cancelamentos, comissões, compras, estoque, vendas de produtos e fechamento de caixa.
 
 ### 🕒 Contexto e Operação
 
@@ -30,8 +30,10 @@ O estabelecimento atua na prestação de serviços de barbearia e cuidados esté
 - **Funcionamento:** segunda-feira a sábado, das 09h às 21h. Aos domingos, a unidade permanece fechada.
 - **Agendamentos:** realizados pelo site Trinks, WhatsApp ou presencialmente.
 - **Encaixes:** atendimento presencial de clientes sem agendamento prévio, conforme a disponibilidade de horários dos barbeiros.
-- **Serviços avulsos:** preços a partir de R$ 50,00.
+- **Serviços avulsos:** preços cadastrados a partir de R$ 50,00, com exceção do corte infantil para crianças de até 12 anos, inclusive, por R$ 25,00, e do corte para adultos calvos, por R$ 30,00.
 - **Pacotes:** combinação de serviços com preço próprio.
+- **Produtos comercializados:** pomada em pó com efeito matte/seco para cabelos, óleo de hidratação para barba e shampoo capilar profissional.
+- **Comissão dos barbeiros:** 50% do valor efetivamente pago pelos serviços e pacotes realizados, sem incluir vendas de produtos.
 - **Formas de pagamento:** Pix, cartão de crédito, cartão de débito ou dinheiro, utilizando uma única forma por atendimento.
 
 ### 👥 Equipe e Volume de Atendimentos
@@ -39,13 +41,13 @@ O estabelecimento atua na prestação de serviços de barbearia e cuidados esté
 | Informação | Caracterização |
 | :--- | :--- |
 | **Quantidade de barbeiros** | 7 profissionais |
-| **Demais profissionais** | Recepcionista, responsável pela recepção dos clientes |
+| **Demais profissionais** | Recepcionista, responsável pela recepção dos clientes, consulta de agendas e escalas, registro de faltas e vendas de produtos. |
 | **Média individual de atendimentos** | Aproximadamente 12 atendimentos por barbeiro por dia |
 | **Volume diário estimado da unidade** | Cerca de 84 atendimentos quando os sete barbeiros trabalham no mesmo dia |
 
 ### ⚠️ Problemas e Necessidades Identificados
 
-- **Conflitos de horários:** agendamentos recebidos pelo WhatsApp ou presencialmente podem gerar sobreposição quando não são registrados imediatamente na agenda do barbeiro.
+- **Conflitos de horários:** agendamentos recebidos pelo WhatsApp ou presencialmente geram sobreposição quando não são registrados imediatamente na agenda do barbeiro.
 
 - **Falhas no registro de cancelamentos:** cancelamentos comunicados por diferentes canais podem demorar a ser atualizados, mantendo horários ocupados mesmo após a desistência do cliente.
 
@@ -59,19 +61,39 @@ O estabelecimento atua na prestação de serviços de barbearia e cuidados esté
 
 Com base no DER adotado, o sistema proposto deve permitir:
 
+#### Necessidades do sistema
+
+Considerando os processos e as regras definidos para o projeto, o sistema deve permitir:
+
 - **Manter os dados da unidade:** registrar nome, endereço, WhatsApp e horários de funcionamento.
 
 - **Organizar os cadastros de clientes e barbeiros:** manter os dados de identificação e contato, registrar a característica de barbeiro não fumante e relacionar os profissionais aos serviços que realizam.
 
-- **Registrar agendamentos e encaixes:** armazenar data, horários de início e término, tipo de atendimento e canal utilizado, vinculando cada registro à unidade, ao cliente e a um único barbeiro.
+- **Gerenciar escalas e agendas:** registrar dias de trabalho, horários, intervalos e folgas dos barbeiros, evitando sobreposição de atendimentos e reservas fora da disponibilidade de cada profissional.
 
-- **Organizar a agenda dos profissionais:** evitar sobreposição de horários para o mesmo barbeiro e registrar os encaixes pelo canal presencial, respeitando o funcionamento da unidade.
+- **Registrar agendamentos e encaixes:** armazenar cliente, unidade, barbeiro responsável, serviços e pacotes escolhidos, data, horários, tipo de atendimento e canal utilizado.
 
-- **Gerenciar serviços e pacotes:** manter descrições, categorias, durações estimadas e preços, registrar a composição dos pacotes e associar um ou mais serviços ou pacotes a cada agendamento.
+- **Acompanhar a situação dos atendimentos:** registrar se cada agendamento está agendado, concluído, cancelado ou marcado como falta.
 
-- **Registrar pagamentos:** armazenar, no agendamento, a data, o horário, o valor pago e a forma utilizada, considerando até um pagamento e uma única forma de pagamento por agendamento.
+- **Controlar faltas sem aviso:** permitir que a recepcionista registre o não comparecimento do cliente quando não houver cancelamento e consulte seus dados de contato para oferecer uma remarcação, sem multas nem bloqueios automáticos.
 
-- **Registrar cancelamentos:** armazenar, no agendamento, a data, o horário e o canal utilizado (site Trinks, WhatsApp ou presencial), considerando o prazo previsto nas regras do modelo.
+- **Gerenciar serviços, pacotes e preços:** manter descrições, categorias, durações e preços, registrar a composição dos pacotes e aplicar os valores diferenciados previstos para cortes.
+
+- **Registrar pagamentos:** armazenar a data, o horário, o valor recebido e a forma de pagamento no respectivo agendamento, permitindo até um pagamento e uma única forma por atendimento.
+
+- **Registrar cancelamentos:** armazenar a data, o horário e o canal do cancelamento, respeitando a antecedência mínima de duas horas e liberando o horário reservado.
+
+- **Controlar comissões e repasses:** calcular 50% do valor efetivamente pago pelos serviços e pacotes realizados, sem incluir vendas de produtos, e registrar as comissões quitadas, a data e o valor de cada repasse.
+
+- **Gerenciar produtos, insumos e estoque:** manter os cadastros e acompanhar entradas por compras, saídas por vendas e consumo nos atendimentos, controlando a validade por lote quando aplicável.
+
+- **Registrar compras:** documentar as compras autorizadas pelo gerente, com itens, quantidades e valores, acrescentando ao estoque somente as unidades recebidas e conferidas.
+
+- **Registrar vendas de produtos:** identificar os produtos vendidos, o número de unidades de cada item, os preços e a forma de pagamento, descontando as quantidades vendidas do estoque.
+
+- **Realizar o fechamento de caixa:** conferir o saldo inicial, os recebimentos e as saídas, incluindo repasses aos barbeiros, registrando o saldo apurado, o saldo conferido e eventuais diferenças.
+
+- **Proteger os dados pessoais:** controlar o acesso conforme a função do usuário e atender aos requisitos de segurança e privacidade definidos no projeto.
 
 
 ### ✅ Justificativa da Escolha
