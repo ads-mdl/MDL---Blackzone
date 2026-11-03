@@ -283,7 +283,7 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
 | **2. UNIDADE RECEBE AGENDAMENTO** | UNIDADE **(0,N)** | AGENDAMENTO **(1,1)** | A unidade pode receber vários agendamentos e encaixes. Cada agendamento pertence a uma única unidade. |
 | **3. CLIENTE REALIZA AGENDAMENTO** | CLIENTE **(0,N)** | AGENDAMENTO **(1,1)** | Um cliente pode estar cadastrado sem agendamentos ou realizar vários. Cada agendamento pertence a exatamente um cliente. |
 | **4. BARBEIRO EXECUTA SERVIÇO / PACOTE** | BARBEIRO **(1,N)** | SERVIÇO / PACOTE **(0,N)** | Cada barbeiro executa um ou mais serviços avulsos. Um serviço avulso pode estar associado a nenhum ou vários barbeiros. A participação nesse relacionamento é restrita aos registros do tipo serviço avulso. |
-| **5. AGENDAMENTO INCLUI SERVIÇO / PACOTE** | AGENDAMENTO **(1,N)** | SERVIÇO / PACOTE **(0,N)** | Cada agendamento inclui pelo menos um serviço avulso ou pacote. Uma opção do catálogo pode não ter sido escolhida ou aparecer em vários agendamentos. |
+| **5. AGENDAMENTO INCLUI SERVIÇO / PACOTE** | AGENDAMENTO **(1,N)** | SERVIÇO / PACOTE **(0,N)** | Cada agendamento inclui um ou mais serviços avulsos ou pacotes. Uma opção do catálogo pode aparecer em nenhum ou vários agendamentos. O atributo preço_praticado registra o valor cobrado por cada opção naquele agendamento, preservando o histórico após alterações no catálogo. |
 | **6. SERVIÇO / PACOTE CONTÉM SERVIÇO / PACOTE** | Papel **pacote (2,N)** | Papel **serviço avulso (0,N)** | Cada pacote contém dois ou mais serviços avulsos. Um serviço avulso pode integrar nenhum ou vários pacotes. Os dois papéis pertencem à mesma entidade e são diferenciados pelo atributo tipo. |
 | **7. AGENDAMENTO GERA COMISSÃO** | AGENDAMENTO **(0,1)** | COMISSÃO **(1,1)** | Um agendamento pode não gerar comissão ou gerar uma única comissão. Cada comissão corresponde a exatamente um agendamento. A geração ocorre somente quando o atendimento estiver concluído e pago. |
 | **8. BARBEIRO RECEBE COMISSÃO** | BARBEIRO **(0,N)** | COMISSÃO **(1,1)** | Um barbeiro pode não possuir comissões ou receber várias. Cada comissão pertence a um único barbeiro. |
@@ -336,38 +336,69 @@ https://github.com/ads-mdl/MDL---Blackzone/blob/main/Blackzone-Der%20atualizado.
 
 ## 8. Justificativa Técnica
 
-
-O DER foi organizado em cinco entidades: **UNIDADE, CLIENTE, BARBEIRO, AGENDAMENTO e SERVIÇO/PACOTE**. A divisão permite manter os cadastros separados e relacionar as informações necessárias para organizar os atendimentos.
+O DER possui **16 entidades e 24 relacionamentos**, abrangendo atendimentos, escalas, comissões, compras, vendas, estoque e fechamento de caixa. A divisão separa os cadastros das operações e permite acompanhar seu histórico.
 
 ### Entidades e atributos
 
 | Entidade | Justificativa |
 | :--- | :--- |
-| **UNIDADE** | Reúne os dados da barbearia e seus horários de funcionamento. Mesmo com apenas uma unidade no projeto, mantém essas informações em um único cadastro. |
-| **CLIENTE** | Armazena os dados dos clientes, permitindo que uma mesma pessoa realize vários agendamentos sem repetir seu cadastro. |
-| **BARBEIRO** | Registra os profissionais e suas características, como a indicação de não fumante, além dos serviços que executam. |
-| **AGENDAMENTO** | Concentra data, horários, canal e tipo de atendimento, distinguindo reservas de encaixes. Também reúne os dados de pagamento e cancelamento. |
-| **SERVIÇO/PACOTE** | Mantém o catálogo de procedimentos e pacotes, com descrição, duração e preço. O atributo `tipo` diferencia as duas opções. |
+| **UNIDADE** | Centraliza os dados da barbearia e seus horários de funcionamento. |
+| **CLIENTE** | Identifica os clientes em diferentes agendamentos, evitando a repetição dos dados cadastrais. |
+| **BARBEIRO** | Registra os profissionais, suas características, escalas e os serviços que executam. |
+| **SERVIÇO / PACOTE** | Mantém o catálogo de serviços e pacotes, diferenciados pelo atributo tipo. |
+| **AGENDAMENTO** | Registra reservas e encaixes, horários, situação e os dados de pagamento e cancelamento. |
+| **COMISSÃO** | Registra a remuneração gerada por um atendimento concluído e pago, com sua base de cálculo e percentual aplicado. |
+| **REPASSE** | Registra a quitação de uma ou mais comissões do mesmo barbeiro. |
+| **PRODUTO / INSUMO** | Reúne os itens vendidos e os materiais utilizados nos atendimentos, diferenciados pela finalidade. |
+| **LOTE** | Identifica os lotes de produtos e insumos, permitindo acompanhar suas quantidades e validades. |
+| **COMPRA** | Registra as compras, incluindo fornecedor, autorização e situação. |
+| **ITEM_COMPRA** | Detalha os produtos ou insumos comprados, suas quantidades e preços unitários. |
+| **VENDA** | Registra as vendas de produtos no balcão e os dados de pagamento. |
+| **ITEM_VENDA** | Detalha os produtos vendidos, preservando as quantidades e os preços praticados. |
+| **MOVIMENTAÇÃO_ESTOQUE** | Registra entradas e saídas por lote, permitindo acompanhar as alterações no estoque. |
+| **MOVIMENTAÇÃO_FINANCEIRA** | Registra recebimentos e desembolsos originados de atendimentos, vendas, compras e repasses. |
+| **FECHAMENTO_CAIXA** | Reúne a conferência das movimentações financeiras, dos saldos e das diferenças por forma de pagamento. |
 
-Cada entidade possui um atributo identificador, como `id_cliente` e `id_agendamento`, para distinguir registros mesmo quando existirem nomes iguais.
+Cada entidade possui um identificador próprio, como id_cliente e id_agendamento, para distinguir os registros.
 
 ### Relacionamentos e cardinalidades
 
-| Relacionamento | Justificativa |
-| :--- | :--- |
-| **UNIDADE RECEBE AGENDAMENTO** | Uma unidade pode ter nenhum ou vários agendamentos **(0,N)**, enquanto cada agendamento pertence a uma única unidade **(1,1)**. |
-| **CLIENTE REALIZA AGENDAMENTO** | Um cliente pode estar cadastrado sem reservas ou realizar vários agendamentos **(0,N)**. Cada agendamento pertence a um cliente **(1,1)**. |
-| **BARBEIRO EXECUTA SERVIÇO/PACOTE** | Um barbeiro executa um ou mais serviços avulsos **(1,N)**, e um serviço pode estar associado a nenhum ou vários barbeiros **(0,N)**. Nesse relacionamento, a participação é restrita aos serviços avulsos. |
-| **AGENDAMENTO INCLUI SERVIÇO/PACOTE** | Cada agendamento inclui uma ou mais opções **(1,N)**. Um serviço ou pacote pode ainda não ter sido escolhido ou aparecer em vários agendamentos **(0,N)**. |
-| **SERVIÇO/PACOTE CONTÉM SERVIÇO/PACOTE** | Mostra quais serviços fazem parte de cada pacote. Por exemplo, um pacote pode reunir corte e barba. Cada pacote deve ter pelo menos dois serviços, e o mesmo serviço pode aparecer em diferentes pacotes. |
+Os 24 relacionamentos estão detalhados na seção **Relacionamentos Pertinentes**. Suas cardinalidades representam a participação mínima e máxima de cada entidade.
+
+- **Participação opcional:** permite cadastrar informações antes de existirem operações relacionadas. Um cliente pode não possuir agendamentos, e um produto pode ainda não possuir lotes.
+- **Participação obrigatória:** representa vínculos necessários, como cada agendamento pertencer a um cliente e cada item de compra pertencer a uma compra.
+- **Comissão por agendamento:** AGENDAMENTO participa de GERA com **(0,1)** e COMISSÃO com **(1,1)**. A comissão só é gerada quando o atendimento estiver concluído e pago.
+- **Composição dos pacotes:** CONTÉM é um autorrelacionamento de SERVIÇO / PACOTE. Cada pacote contém dois ou mais serviços avulsos, enquanto um avulso pode participar de nenhum ou vários pacotes. Esses papéis dependem do atributo tipo.
+- **Quitação e conciliação:** cada comissão pode pertencer a um único repasse, e cada movimentação financeira pode integrar um único fechamento, evitando duplicidade.
+- **Origem financeira:** cada movimentação possui exatamente uma origem entre agendamento, venda, compra ou repasse. Essa exclusividade complementa as cardinalidades do desenho.
 
 ### Decisões de modelagem
 
-- **Serviços e pacotes na mesma entidade:** compartilham atributos como nome, descrição, duração e preço. A composição dos pacotes é registrada pelo relacionamento **CONTÉM**.
-- **Pagamento e cancelamento dentro de AGENDAMENTO:** essa escolha acompanha a regra de permitir, no máximo, um pagamento e um cancelamento por agendamento. Os campos são preenchidos somente quando esses eventos ocorrem.
-- **Horário de funcionamento dentro de UNIDADE:** agrupa dia da semana, abertura, fechamento e indicação de dia fechado, permitindo registrar a programação semanal.
-- **Regras complementares ao desenho:** o prazo de cancelamento, o preço inicial dos serviços e a proibição de sobreposição de horários precisam ser descritos nas regras de negócio, pois as cardinalidades não expressam essas condições sozinhas.
+- **Serviços e pacotes na mesma entidade:** compartilham nome, descrição, duração e preço. O atributo tipo diferencia as opções, e CONTÉM registra a composição dos pacotes.
 
+- **Preço praticado em INCLUI:** registra o valor cobrado por cada serviço ou pacote no agendamento, preservando o histórico quando o preço do catálogo muda. Os atributos valor_total_cobrado e valor_pago representam os valores do atendimento inteiro.
+
+- **Pagamento e cancelamento dentro de AGENDAMENTO:** como cada agendamento admite até um pagamento e até um cancelamento, seus dados são atributos opcionais, preenchidos quando esses eventos ocorrem.
+
+- **Funcionamento e escalas como atributos compostos e multivalorados:** horário_funcionamento representa a programação semanal da unidade; escala_trabalho registra dias, horários, intervalos e folgas dos barbeiros.
+
+- **Comissão separada do repasse:** distingue o valor devido ao profissional de sua quitação, permitindo reunir várias comissões em um pagamento.
+
+- **Compras e vendas separadas de seus itens:** permite registrar vários produtos na mesma operação, com quantidades e preços próprios, sem repetir os dados gerais da compra ou venda.
+
+- **Produtos e insumos no mesmo cadastro:** compartilham identificação, unidade de medida e controle de estoque. A finalidade diferencia os itens comercializados dos materiais consumidos.
+
+- **Lotes separados das movimentações:** LOTE identifica o conjunto de itens e sua validade; MOVIMENTAÇÃO_ESTOQUE registra cada entrada ou saída. Os saldos são calculados a partir dessas movimentações.
+
+- **Movimentações financeiras separadas do fechamento:** permite registrar cada recebimento ou desembolso antes de sua conferência e conciliação no caixa.
+
+- **Atributos derivados:** subtotais, totais de compras e vendas, quantidades disponíveis e valores de comissão são calculados a partir dos registros relacionados.
+
+- **Responsável pelo atendimento:** um único barbeiro realiza todos os procedimentos, conforme a regra operacional. O DER adotado não registra a atribuição do profissional na reserva, pois não possui ligação direta entre BARBEIRO e AGENDAMENTO. COMISSÃO identifica o barbeiro remunerado após a conclusão e o pagamento.
+
+- **Regras complementares:** o cancelamento com antecedência mínima de duas horas, os preços diferenciados, a ausência de sobreposição de horários e as condições para gerar comissão são descritos nas regras de negócio, pois não são expressos integralmente pelas cardinalidades.
+
+O modelo conceitual apresenta entidades, atributos e relacionamentos. Chaves estrangeiras e estruturas de implementação serão definidas na modelagem lógica.
 - ## 9. Uso de Inteligência Artificial
 
 O grupo utilizou o **ChatGPT** para auxiliar na compreensão do conteúdo, na elaboração e revisão do DER e na organização do README. Os principais usos estão descritos abaixo.
