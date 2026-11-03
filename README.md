@@ -59,10 +59,6 @@ O estabelecimento atua na prestação de serviços de barbearia e cuidados esté
 
 #### Necessidades do sistema
 
-Com base no DER adotado, o sistema proposto deve permitir:
-
-#### Necessidades do sistema
-
 Considerando os processos e as regras definidos para o projeto, o sistema deve permitir:
 
 - **Manter os dados da unidade:** registrar nome, endereço, WhatsApp e horários de funcionamento.
@@ -174,10 +170,9 @@ Os requisitos funcionais descrevem o que o sistema deve permitir que a equipe fa
 | **RF01** | Gerenciar os dados da unidade | Cadastrar, consultar e atualizar nome, endereço, WhatsApp e horários de funcionamento da unidade. |
 | **RF02** | Gerenciar clientes | Cadastrar, consultar e atualizar nome, telefone e e-mail opcional dos clientes. |
 | **RF03** | Gerenciar barbeiros e escalas | Cadastrar, consultar e atualizar os dados dos barbeiros, vinculando-os à unidade e aos serviços que realizam e a indicação de fumante/não fumante, além dos dias de trabalho, horários, intervalos e folgas de cada profissional. |
-| **RF06** | Consultar e organizar a agenda | Consultar horários ocupados e disponíveis, impedindo sobreposição de atendimentos e respeitando o funcionamento da unidade e a escala de cada barbeiro, incluindo intervalos e folgas. |
-| **RF10** | Consultar registros de atendimento | Consultar os agendamentos de cada cliente e barbeiro, incluindo serviços escolhidos, situação do atendimento e dados de pagamento ou cancelamento, quando existentes. |
-| **RF04** | Gerenciar serviços e pacotes | Cadastrar e atualizar descrições, categorias, preços e durações estimadas, além de registrar os serviços avulsos que compõem cada pacote. |
-| **RF05** | Registrar agendamentos | Registrar cliente, unidade, barbeiro responsável, serviços ou pacotes escolhidos, data, horários de início e término e canal utilizado. |
+| **RF04** | Consultar e organizar a agenda | Consultar horários ocupados e disponíveis, impedindo sobreposição de atendimentos e respeitando o funcionamento da unidade e a escala de cada barbeiro, incluindo intervalos e folgas. |
+| **RF05** | Gerenciar serviços e pacotes | Cadastrar e atualizar descrições, categorias, preços e durações estimadas, além de registrar os serviços avulsos que compõem cada pacote. |
+| **RF06** | Registrar agendamentos | Registrar cliente, unidade, barbeiro responsável, serviços ou pacotes escolhidos, data, horários de início e término e canal utilizado. |
 | **RF07** | Registrar encaixes | Registrar atendimentos sem reserva prévia, identificando-os como encaixes pelo canal presencial e vinculando cliente, barbeiro e serviços escolhidos. |
 | **RF08** | Registrar pagamentos | Registrar, no respectivo agendamento, a data, o horário, o valor pago e a forma de pagamento utilizada. |
 | **RF09** | Registrar cancelamentos | Registrar a data, o horário e o canal do cancelamento, verificando o prazo previsto nas regras de negócio e liberando o horário cancelado. |
@@ -216,7 +211,7 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 | **RN01** | Identificação do atendimento | Cada agendamento deve estar vinculado a um cliente, um barbeiro e à unidade. |
 | **RN02** | Responsável pelo atendimento | Um único barbeiro realiza todos os procedimentos escolhidos pelo cliente, incluindo os serviços dos pacotes. |
 | **RN03** | Serviços e pacotes | Cada agendamento deve incluir pelo menos um serviço avulso ou pacote. Conforme o DER, cada pacote reúne dois ou mais serviços avulsos. |
-| **RN04** | Preços | Os serviços avulsos possuem preços cadastrados a partir de R$ 50, exceto os cortes com valores diferenciados previstos na RN15. Pacotes e produtos possuem preços próprios cadastrados. |
+| **RN04** | Preços | Os serviços avulsos possuem preços cadastrados a partir de R$ 50, exceto os cortes com valores diferenciados previstos na RN20. Pacotes e produtos possuem preços próprios cadastrados. |
 | **RN05** | Canais de agendamento | As marcações podem ser feitas pelo **Trinks, WhatsApp ou presencialmente**, com registro do canal utilizado. |
 | **RN06** | Encaixes | Clientes sem horário marcado podem ser atendidos quando houver disponibilidade. O atendimento deve ser registrado como **encaixe**, pelo canal **presencial**. |
 | **RN07** | Pagamento | Cada atendimento permite um único pagamento, em **Pix, crédito, débito ou dinheiro**, sem divisão entre formas. Devem ser registrados o valor, a data e a hora do pagamento e a forma utilizada. |
@@ -399,7 +394,8 @@ Os 24 relacionamentos estão detalhados na seção **Relacionamentos Pertinentes
 - **Regras complementares:** o cancelamento com antecedência mínima de duas horas, os preços diferenciados, a ausência de sobreposição de horários e as condições para gerar comissão são descritos nas regras de negócio, pois não são expressos integralmente pelas cardinalidades.
 
 O modelo conceitual apresenta entidades, atributos e relacionamentos. Chaves estrangeiras e estruturas de implementação serão definidas na modelagem lógica.
-- ## 9. Uso de Inteligência Artificial
+
+## 9. Uso de Inteligência Artificial
 
 O grupo utilizou o **ChatGPT** para auxiliar na compreensão do conteúdo, na elaboração e revisão do DER e na organização do README. Os principais usos estão descritos abaixo.
 
