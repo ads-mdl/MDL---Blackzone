@@ -109,7 +109,7 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 - **Referência pública:** [Página oficial da rede Black Zone](https://www.barbeariablackzone.com/).
 - **Responsável entrevistado e sua função:** Pedro, Barbeiro.
 - **Data da entrevista:** 09/09/2026.
-- **### Registro da entrevista:**
+- **### Registro da entrevista:** https://github.com/ads-mdl/MDL---Blackzone/blob/main/foto-entrevista-blackzone.jpeg
 
 ---
 
