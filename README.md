@@ -243,7 +243,7 @@ As regras de negócio definem como os atendimentos da **Barbearia Black Zone Cel
 
 ## 5. Dicionário de Dados Conceitual 
 
-https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio.html
+https://github.com/ads-mdl/MDL---Blackzone/blob/main/Dicion%C3%A1rio-Blackzone2.html
 
 ---
 
