@@ -326,7 +326,7 @@ As restrições abaixo complementam as cardinalidades do DER e descrevem condiç
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
 
-https://github.com/ads-mdl/MDL---Blackzone/blob/main/Blackzone-Der%20atualizado.jpeg
+https://github.com/ads-mdl/MDL---Blackzone/blob/main/Blackzonederatualizado2.jpeg
 
 
 ## 8. Justificativa Técnica
