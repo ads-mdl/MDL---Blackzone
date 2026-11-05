@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicionário de Dados - Barbearia Black Zone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        td.atributo {
+            font-weight: bold;
+            font-family: monospace;
+            color: #c0392b;
+            white-space: nowrap;
+        }
+
+        td.regra {
+            font-size: 14px;
+        }
+
+        .tag-pk {
+            background-color: #27ae60;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-fk {
+            background-color: #f39c12;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dicionário de Dados — Barbearia Black Zone Celso 5065</h1>
+
+    <!-- Tabela Unidade -->
+    <h2>1. Tabela: UNIDADE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Identificador único da franquia</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_UNIDADE</td>
+                <td>Nome da unidade (ex: Black Zone Celso 5065)</td>
+                <td class="regra">Varchar(100). Obrigatório. (Restrita a uma unidade - RN17)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_ENDERECO</td>
+                <td>Endereço físico da unidade (composto)</td>
+                <td class="regra">Varchar(255). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_WHATSAPP</td>
+                <td>WhatsApp de contato da unidade</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_UNIDADE</td>
+                <td>Status atual da unidade (Ativa, Inativa)</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_HORARIO_FUNCIONAMENTO</td>
+                <td>Programação semanal (composto e multivalorado)</td>
+                <td class="regra">JSON/Text. Obrigatório. (Seg-Sáb, 09h às 21h - RN18)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Cliente -->
+    <h2>2. Tabela: CLIENTE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_CLIENTE</td>
+                <td>Código identificador único do cliente</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_CLIENTE</td>
+                <td>Nome do cliente</td>
+                <td class="regra">Varchar(100). Obrigatório. (LGPD - RN24)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_TELEFONE</td>
+                <td>Número de contato / WhatsApp do cliente</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_EMAIL</td>
+                <td>Endereço de e-mail do cliente</td>
+                <td class="regra">Varchar(100). Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Barbeiro -->
+    <h2>3. Tabela: BARBEIRO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_BARBEIRO</td>
+                <td>Código identificador do profissional</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Unidade em que o barbeiro trabalha</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia UNIDADE. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_BARBEIRO</td>
+                <td>Nome do barbeiro</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_TELEFONE</td>
+                <td>Telefone de contato do barbeiro</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">FL_NAO_FUMANTE</td>
+                <td>Sinaliza se o profissional é não fumante</td>
+                <td class="regra">Boolean. Obrigatório. (RN10)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_BARBEIRO</td>
+                <td>Status (Ativo, Férias, Inativo)</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_ESCALA_TRABALHO</td>
+                <td>Dias, horários, intervalos e folgas (multivalorado)</td>
+                <td class="regra">JSON/Text. Obrigatório. (RN19)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Serviço / Pacote -->
+    <h2>4. Tabela: SERVIÇO / PACOTE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_SERVICO_PACOTE</td>
+                <td>Identificador da opção do catálogo</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_ITEM</td>
+                <td>Nome do serviço ou pacote</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_ITEM</td>
+                <td>Diferencia 'Serviço Avulso' de 'Pacote'</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CATEGORIA</td>
+                <td>Categoria (ex: Cabelo, Barba, Estética)</td>
+                <td class="regra">Varchar(50). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_ITEM</td>
+                <td>Descrição do procedimento ou pacote</td>
+                <td class="regra">Text. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_DURACAO_ESTIMADA</td>
+                <td>Duração estimada em minutos</td>
+                <td class="regra">Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PRECO_ATUAL</td>
+                <td>Preço base (Serviços avulsos a partir de R$ 50)</td>
+                <td class="regra">Numeric(10,2). Obrigatório. (RN04)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_VALIDADE</td>
+                <td>Validade da oferta promocional</td>
+                <td class="regra">Date. Opcional (Para pacotes).</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_ITEM</td>
+                <td>Status de disponibilidade</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Agendamento -->
+    <h2>5. Tabela: AGENDAMENTO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_AGENDAMENTO</td>
+                <td>Código identificador do atendimento</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_CLIENTE</td>
+                <td>Cliente que será atendido</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia CLIENTE. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Unidade onde ocorrerá o atendimento</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia UNIDADE. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_AGENDAMENTO</td>
+                <td>Data programada ou do encaixe</td>
+                <td class="regra">Date. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_INICIO</td>
+                <td>Horário de início do atendimento</td>
+                <td class="regra">Time. Obrigatório. (Sem sobreposições - RN19)</td>
+            </tr>
+            <tr>
+                <td class="atributo">HR_FIM</td>
+                <td>Horário de término projetado</td>
+                <td class="regra">Time. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_AGENDAMENTO</td>
+                <td>Tipo (Agendamento ou Encaixe)</td>
+                <td class="regra">Varchar(20). Obrigatório. (RN06)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CANAL</td>
+                <td>Trinks, WhatsApp ou Presencial</td>
+                <td class="regra">Varchar(30). Obrigatório. (RN05)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_AGENDAMENTO</td>
+                <td>Agendado, Concluído, Cancelado, Falta</td>
+                <td class="regra">Varchar(20). Obrigatório. (RN08)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CATEGORIA_PRECO_CORTE</td>
+                <td>Criança até 12, Adulto Calvo ou Padrão</td>
+                <td class="regra">Varchar(50). Obrigatório. (RN20)</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_TOTAL_COBRADO</td>
+                <td>Total cobrado no atendimento</td>
+                <td class="regra">Numeric(10,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_OBSERVACAO</td>
+                <td>Observações gerais do atendimento</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+            <!-- Campos opcionais incorporados: Pagamento e Cancelamento -->
+            <tr>
+                <td class="atributo">DT_HR_PAGAMENTO</td>
+                <td>Data e hora em que foi liquidado</td>
+                <td class="regra">Timestamp. Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PAGO</td>
+                <td>Valor total pago pelo cliente</td>
+                <td class="regra">Numeric(10,2). Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_FORMA_PAGAMENTO</td>
+                <td>Pix, Crédito, Débito ou Dinheiro</td>
+                <td class="regra">Varchar(30). Opcional. (Forma única - RN07)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_CANCELAMENTO</td>
+                <td>Data e hora do registro de cancelamento</td>
+                <td class="regra">Timestamp. Opcional. (Antecedência 2h - RN22)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CANAL_CANCELAMENTO</td>
+                <td>Canal em que a desistência ocorreu</td>
+                <td class="regra">Varchar(30). Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Comissão -->
+    <h2>6. Tabela: COMISSÃO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_COMISSAO</td>
+                <td>Registro gerado após o pagamento</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_AGENDAMENTO</td>
+                <td>Agendamento concluído e pago vinculado</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia AGENDAMENTO. UNIQUE. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_BARBEIRO</td>
+                <td>Profissional remunerado pelo atendimento</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia BARBEIRO. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_REPASSE</td>
+                <td>Registro de quitação da comissão</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia REPASSE. Opcional (até ser quitada).</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_GERACAO</td>
+                <td>Data e hora de geração da comissão</td>
+                <td class="regra">Timestamp. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_BASE</td>
+                <td>Valor base efetivamente pago no atendimento</td>
+                <td class="regra">Numeric(10,2). Obrigatório. (RN11)</td>
+            </tr>
+            <tr>
+                <td class="atributo">PC_APLICADO</td>
+                <td>Percentual (50%)</td>
+                <td class="regra">Numeric(5,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_COMISSAO</td>
+                <td>Valor final a ser repassado</td>
+                <td class="regra">Numeric(10,2). Derivado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Repasse -->
+    <h2>7. Tabela: REPASSE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_REPASSE</td>
+                <td>Identificador da quitação</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_BARBEIRO</td>
+                <td>Barbeiro recebedor do repasse</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia BARBEIRO. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_REPASSE</td>
+                <td>Data e hora do pagamento das comissões</td>
+                <td class="regra">Timestamp. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_TOTAL</td>
+                <td>Total consolidado pago ao barbeiro</td>
+                <td class="regra">Numeric(10,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_FORMA_PAGAMENTO</td>
+                <td>Dinheiro, Pix, Transferência</td>
+                <td class="regra">Varchar(30). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_OBSERVACAO</td>
+                <td>Observações da conferência pelo gerente</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Produto / Insumo -->
+    <h2>8. Tabela: PRODUTO / INSUMO</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_PRODUTO_INSUMO</td>
+                <td>Identificador de venda ou consumo</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_PRODUTO_INSUMO</td>
+                <td>Nome do item (ex: Pomada em Pó)</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_PRODUTO_INSUMO</td>
+                <td>Detalhes técnicos do item</td>
+                <td class="regra">Text. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_FINALIDADE</td>
+                <td>Venda ou Consumo Interno</td>
+                <td class="regra">Varchar(50). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_UNIDADE_MEDIDA</td>
+                <td>Unidade (unidade, ml, gramas)</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PRECO_VENDA</td>
+                <td>Valor de venda no balcão</td>
+                <td class="regra">Numeric(10,2). Opcional (obrigatório se Venda).</td>
+            </tr>
+            <tr>
+                <td class="atributo">FL_CONTROLA_VALIDADE</td>
+                <td>Indicador de acompanhamento de validade</td>
+                <td class="regra">Boolean. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_PRODUTO_INSUMO</td>
+                <td>Status do cadastro</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_QTD_ESTOQUE</td>
+                <td>Saldo geral em estoque</td>
+                <td class="regra">Integer/Numeric. Derivado das movimentações.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Lote -->
+    <h2>9. Tabela: LOTE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_LOTE</td>
+                <td>Identificador único do lote</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_PRODUTO_INSUMO</td>
+                <td>Produto ou Insumo ao qual o lote pertence</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia PRODUTO_INSUMO. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">CD_LOTE</td>
+                <td>Código alfanumérico do fabricante</td>
+                <td class="regra">Varchar(50). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_VALIDADE</td>
+                <td>Data de vencimento</td>
+                <td class="regra">Date. Opcional (conforme FL_CONTROLA_VALIDADE).</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_QTD_DISPONIVEL</td>
+                <td>Saldo físico disponível para este lote</td>
+                <td class="regra">Integer/Numeric. Derivado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Compra -->
+    <h2>10. Tabela: COMPRA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_COMPRA</td>
+                <td>Identificador da operação</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_COMPRA</td>
+                <td>Data da realização da compra</td>
+                <td class="regra">Date. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_AUTORIZACAO</td>
+                <td>Data da autorização pelo gerente</td>
+                <td class="regra">Date. Obrigatório. (RN13)</td>
+            </tr>
+            <tr>
+                <td class="atributo">NM_FORNECEDOR</td>
+                <td>Fornecedor das mercadorias</td>
+                <td class="regra">Varchar(100). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_COMPRA</td>
+                <td>Recebida, Pendente, Cancelada</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_TOTAL</td>
+                <td>Valor total das mercadorias</td>
+                <td class="regra">Numeric(10,2). Derivado (Soma dos itens).</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_OBSERVACAO</td>
+                <td>Anotações adicionais da conferência</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Item Compra -->
+    <h2>11. Tabela: ITEM_COMPRA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_ITEM_COMPRA</td>
+                <td>Identificador da linha da compra</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_COMPRA</td>
+                <td>Compra à qual o item pertence</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia COMPRA. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_PRODUTO_INSUMO</td>
+                <td>Material adquirido</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia PRODUTO_INSUMO. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_QTD_COMPRADA</td>
+                <td>Quantidade solicitada na compra</td>
+                <td class="regra">Integer/Numeric. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PRECO_UNITARIO</td>
+                <td>Custo por unidade</td>
+                <td class="regra">Numeric(10,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_SUBTOTAL</td>
+                <td>Qtd * Preço Unitário</td>
+                <td class="regra">Numeric(10,2). Derivado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Venda -->
+    <h2>12. Tabela: VENDA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_VENDA</td>
+                <td>Registro de venda de produtos no balcão</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_VENDA</td>
+                <td>Data e hora da transação</td>
+                <td class="regra">Timestamp. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_VENDA</td>
+                <td>Concluída, Cancelada</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_TOTAL</td>
+                <td>Somatória dos itens de venda</td>
+                <td class="regra">Numeric(10,2). Derivado.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_PAGAMENTO</td>
+                <td>Data e hora do recebimento</td>
+                <td class="regra">Timestamp. Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PAGO</td>
+                <td>Valor pago pelo cliente</td>
+                <td class="regra">Numeric(10,2). Opcional.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_FORMA_PAGAMENTO</td>
+                <td>Pix, Dinheiro, Débito, Crédito</td>
+                <td class="regra">Varchar(30). Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Item Venda -->
+    <h2>13. Tabela: ITEM_VENDA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_ITEM_VENDA</td>
+                <td>Linha detalhada da venda</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_VENDA</td>
+                <td>Venda à qual o item pertence</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia VENDA. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_PRODUTO_INSUMO</td>
+                <td>Produto comercializado</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia PRODUTO_INSUMO. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_QTD_VENDIDA</td>
+                <td>Quantidade consumida do estoque</td>
+                <td class="regra">Integer/Numeric. Obrigatório. (Descontado de estoque disponível - RN12)</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_PRECO_PRATICADO</td>
+                <td>Valor unitário na hora da venda</td>
+                <td class="regra">Numeric(10,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_SUBTOTAL</td>
+                <td>Qtd * Preço Praticado</td>
+                <td class="regra">Numeric(10,2). Derivado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Movimentação Estoque -->
+    <h2>14. Tabela: MOVIMENTAÇÃO_ESTOQUE</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_MOVIMENTACAO_ESTOQUE</td>
+                <td>Registro de alteração física de lote</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_LOTE</td>
+                <td>Lote efetivamente movimentado</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia LOTE. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_ITEM_COMPRA</td>
+                <td>Item que originou entrada por compra</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia ITEM_COMPRA. Opcional (Mutuamente exclusivo).</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_ITEM_VENDA</td>
+                <td>Item que originou saída por venda</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia ITEM_VENDA. Opcional (Mutuamente exclusivo).</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_MOVIMENTACAO</td>
+                <td>Data e hora da ocorrência</td>
+                <td class="regra">Timestamp. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_MOVIMENTACAO</td>
+                <td>Entrada ou Saída</td>
+                <td class="regra">Varchar(10). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_MOTIVO</td>
+                <td>Compra, Venda, Consumo, Avaria</td>
+                <td class="regra">Varchar(50). Obrigatório. (RN14)</td>
+            </tr>
+            <tr>
+                <td class="atributo">NR_QUANTIDADE</td>
+                <td>Quantidade debitada ou creditada</td>
+                <td class="regra">Integer/Numeric. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_OBSERVACAO</td>
+                <td>Observações sobre a conferência</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Fechamento de Caixa -->
+    <h2>15. Tabela: FECHAMENTO_CAIXA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_FECHAMENTO</td>
+                <td>Controle da conferência diária</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_UNIDADE</td>
+                <td>Caixa vinculado à unidade</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia UNIDADE. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_REFERENCIA</td>
+                <td>Data fiscal de movimento</td>
+                <td class="regra">Date. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_FECHAMENTO</td>
+                <td>Momento em que o gerente executou</td>
+                <td class="regra">Timestamp. Obrigatório. (RN15)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ST_FECHAMENTO</td>
+                <td>Pendente, Fechado, Divergente</td>
+                <td class="regra">Varchar(20). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_CONFERENCIA_POR_FORMA</td>
+                <td>Apurado e conferido por meio (Pix, Cartão)</td>
+                <td class="regra">JSON/Text. Obrigatório (Composto/Multivalorado).</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_JUSTIFICATIVA_DIFERENCA</td>
+                <td>Justificativa em caso de quebra de caixa</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabela Movimentação Financeira -->
+    <h2>16. Tabela: MOVIMENTAÇÃO_FINANCEIRA</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Descrição</th>
+                <th>Regra de Negócio / Tipo de Dado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">ID_MOVIMENTACAO_FINANCEIRA</td>
+                <td>Registro monetário (caixa)</td>
+                <td class="regra"><span class="tag-pk">PK</span> Integer. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_FECHAMENTO</td>
+                <td>Conciliação ao qual pertence</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia FECHAMENTO_CAIXA. Opcional (até conciliar).</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_AGENDAMENTO</td>
+                <td>Origem: Pagamento de Atendimento</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia AGENDAMENTO. Opcional. (Exclusivo)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_VENDA</td>
+                <td>Origem: Pagamento de Produto</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia VENDA. Opcional. (Exclusivo)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_COMPRA</td>
+                <td>Origem: Desembolso por Compra</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia COMPRA. Opcional. (Exclusivo)</td>
+            </tr>
+            <tr>
+                <td class="atributo">ID_REPASSE</td>
+                <td>Origem: Desembolso por Comissão</td>
+                <td class="regra"><span class="tag-fk">FK</span> Referencia REPASSE. Opcional. (Exclusivo)</td>
+            </tr>
+            <tr>
+                <td class="atributo">DT_HR_MOVIMENTACAO</td>
+                <td>Data e hora da liquidação</td>
+                <td class="regra">Timestamp. Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_MOVIMENTACAO</td>
+                <td>Entrada ou Saída</td>
+                <td class="regra">Varchar(10). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_NATUREZA</td>
+                <td>Receita Operacional, Custo, etc.</td>
+                <td class="regra">Varchar(50). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">VL_MOVIMENTACAO</td>
+                <td>Valor final da operação</td>
+                <td class="regra">Numeric(10,2). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">TP_FORMA_PAGAMENTO</td>
+                <td>Pix, Dinheiro, Crédito, Débito</td>
+                <td class="regra">Varchar(30). Obrigatório.</td>
+            </tr>
+            <tr>
+                <td class="atributo">DS_OBSERVACAO</td>
+                <td>Notas sobre o lançamento</td>
+                <td class="regra">Text. Opcional.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tabelas Associativas (M:N) -->
+    <h2>Tabelas Associativas (Relacionamentos M:N)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Tabela Intermediária</th>
+                <th>Atributos Formadores</th>
+                <th>Descrição / Regra de Negócio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="atributo">BARBEIRO_SERVICO_PACOTE</td>
+                <td><span class="tag-fk">FK</span> ID_BARBEIRO<br><span class="tag-fk">FK</span> ID_SERVICO_PACOTE</td>
+                <td class="regra">Relaciona os serviços avulsos que cada barbeiro é habilitado a executar (EXECUTA).</td>
+            </tr>
+            <tr>
+                <td class="atributo">PACOTE_SERVICO</td>
+                <td><span class="tag-fk">FK</span> ID_PACOTE (SERVICO_PACOTE)<br><span class="tag-fk">FK</span> ID_SERVICO (SERVICO_PACOTE)</td>
+                <td class="regra">Autorrelacionamento. Define a composição de serviços avulsos dentro de uma oferta promocional (CONTÉM - RN03).</td>
+            </tr>
+            <tr>
+                <td class="atributo">AGENDAMENTO_SERVICO_PACOTE</td>
+                <td><span class="tag-fk">FK</span> ID_AGENDAMENTO<br><span class="tag-fk">FK</span> ID_SERVICO_PACOTE<br><b>VL_PRECO_PRATICADO</b></td>
+                <td class="regra">Relaciona serviços/pacotes escolhidos (INCLUI). <b>VL_PRECO_PRATICADO</b> (Numeric) preserva o preço cobrado por item naquele momento específico.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
