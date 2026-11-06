@@ -425,3 +425,6 @@ O grupo utilizou o **ChatGPT** para auxiliar na compreensão do conteúdo, na el
 | **Trechos rejeitados ou corrigidos** | Foram reduzidos textos considerados artificiais ou repetitivos. O nome do gerente foi corrigido de Pedro para Dante, e foi esclarecido que os preços a partir de R$ 50,00 se referem aos serviços avulsos. A sugestão de regra sobre validade promocional dos pacotes foi descartada por não estar confirmada. |
 | **Justificativa da escolha final** | Foram priorizados textos diretos e relacionados ao escopo do projeto, com ajustes para acompanhar as mudanças no DER. |
 | **Reflexão crítica** | A IA pode apresentar suposições como se fossem regras da organização. Por isso, cada sugestão precisa ser comparada com as informações da pesquisa de campo antes de entrar na versão final. |
+
+
+## 10. Script SQL
