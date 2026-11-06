@@ -428,3 +428,4 @@ O grupo utilizou o **ChatGPT** para auxiliar na compreensão do conteúdo, na el
 
 
 ## 10. Script SQL
+https://github.com/ads-mdl/MDL---Blackzone/blob/main/Blackzone2.sql
