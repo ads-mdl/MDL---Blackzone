@@ -111,6 +111,94 @@ Optamos por entrevistar apenas essa unidade para conseguir analisar os processos
 - **Data da entrevista:** 09/09/2026.
 - **### Registro da entrevista:** https://github.com/ads-mdl/MDL---Blackzone/blob/main/foto-entrevista-blackzone.jpeg
 
+## Entrevista
+
+Entrevista realizada pelo grupo para desenvolver o projeto. 
+
+**Grupo:** Como funciona a rotina da unidade?
+
+**Barbeiro:** A gente abre de segunda a sábado, das nove da manhã às nove da noite. São sete barbeiros, e a recepção organiza os horários e recebe os clientes.
+
+**Grupo:** Os sete ficam aqui durante todo esse período?
+
+**Barbeiro:** Não necessariamente. O horário da barbearia é uma coisa, e a escala de cada profissional é outra. Tem os horários de trabalho, os intervalos e as folgas. A recepção precisa conferir isso antes de marcar.
+
+**Grupo:** Por onde os clientes costumam agendar?
+
+**Barbeiro:** Pelo Trinks, pelo WhatsApp ou aqui na recepção. Primeiro, a gente vê o que o cliente quer fazer. Depois, confere o horário e um profissional que faça os serviços escolhidos.
+
+**Grupo:** Quais dados vocês precisam do cliente?
+
+**Barbeiro:** Nome e telefone para contato. O e-mail é opcional. Também é bom conferir se ele já tem cadastro, para não cadastrar a mesma pessoa duas vezes.
+
+**Grupo:** E se a pessoa chegar sem horário marcado?
+
+**Barbeiro:** A recepção vê se dá para encaixar. Se tiver disponibilidade, registra o cliente, o que ele vai fazer e o horário. Esse atendimento fica marcado como encaixe presencial.
+
+**Grupo:** O cliente pode fazer o corte com um barbeiro e a barba com outro no mesmo atendimento?
+
+**Barbeiro:** Pela regra que estamos considerando, o mesmo barbeiro faz o atendimento inteiro. Por isso, antes de marcar, precisa conferir se ele faz todos os serviços que o cliente escolheu.
+
+**Grupo:** O que precisa ficar registrado sobre cada barbeiro?
+
+**Barbeiro:** Nome, telefone, se está ativo, os serviços que faz e a escala. Também tem a informação de ser ou não fumante, porque isso pode ser uma preferência do cliente.
+
+**Grupo:** Como funcionam os pacotes?
+
+**Barbeiro:** O cliente pode escolher um serviço separado ou um pacote com dois ou mais serviços. O pacote tem seu próprio preço. Tem que ficar claro o que está incluído e quanto tempo o atendimento deve levar.
+
+**Grupo:** Quais são os valores dos cortes considerados no projeto?
+
+**Barbeiro:** O corte comum começa em cinquenta reais. Para criança de até doze anos, fica vinte e cinco. Para adulto calvo, trinta. Se incluir outro serviço ou escolher um pacote, o valor segue o preço daquela opção.
+
+**Grupo:** E quando o preço da tabela muda?
+
+**Barbeiro:** O atendimento antigo precisa continuar com o valor que foi cobrado na época. Mudar o preço da tabela não pode mudar o histórico do cliente.
+
+**Grupo:** Como fica o registro do pagamento?
+
+**Barbeiro:** A gente registra quanto recebeu, quando recebeu e como o cliente pagou. Pode ser Pix, crédito, débito ou dinheiro. Nesse projeto, o pagamento do atendimento é feito de uma vez, usando uma única forma.
+
+**Grupo:** Como funciona o cancelamento?
+
+**Barbeiro:** O cliente pode pedir pelo Trinks, pelo WhatsApp ou pessoalmente, com pelo menos duas horas de antecedência. A recepção registra o cancelamento e libera o horário.
+
+**Grupo:** E se o cliente simplesmente não aparecer?
+
+**Barbeiro:** A recepção marca a falta. Não tem multa nem bloqueio automático. Depois, pode entrar em contato para ver se ele quer remarcar.
+
+**Grupo:** Como é calculada a comissão?
+
+**Barbeiro:** A regra do projeto é cinquenta por cento do que foi pago pelos serviços e pacotes. Só gera comissão depois que o atendimento foi feito e pago. Se o cliente cancelar ou faltar, não gera. A venda de produtos também não entra nessa conta.
+
+**Grupo:** Comissão e repasse são a mesma coisa?
+
+**Barbeiro:** Não. A comissão é o valor que o barbeiro tem para receber. O repasse é quando esse dinheiro é pago. O gerente pode juntar várias comissões do mesmo profissional e pagar em um repasse, deixando registrado o valor, a data e a forma de pagamento.
+
+**Grupo:** Quais produtos são vendidos no balcão?
+
+**Barbeiro:** Pomada em pó com efeito seco, óleo para barba e shampoo capilar profissional. Na venda, precisa registrar o produto, quantas unidades o cliente levou, o preço e o pagamento.
+
+**Grupo:** E como vocês acompanham o estoque?
+
+**Barbeiro:** O que é vendido sai do estoque. Os materiais usados nos atendimentos também precisam ter a saída registrada. Além da quantidade, é importante acompanhar o lote e a validade.
+
+**Grupo:** Como funciona a compra de mais produtos e materiais?
+
+**Barbeiro:** A equipe avisa quando alguma coisa está acabando, ou o gerente confere o estoque. Ele autoriza a compra. Quando chega, a gente confere os produtos, as quantidades, os valores e as validades. Só entra no estoque o que realmente foi recebido.
+
+**Grupo:** O que acontece no fechamento de caixa?
+
+**Barbeiro:** No fim do expediente, o gerente confere o que entrou e o que saiu, incluindo as compras pagas e os repasses aos barbeiros. Se o valor não bater com o esperado, ele verifica o motivo e registra a diferença.
+
+**Grupo:** Quais cuidados de higiene fazem parte do atendimento?
+
+**Barbeiro:** Preparar e limpar a bancada, conferir a validade dos produtos e cuidar da limpeza dos materiais. A desinfecção e a esterilização são feitas conforme a necessidade de cada material. As lâminas são usadas uma única vez e vão para o recipiente próprio de descarte.
+
+**Grupo:** Quem pode consultar os dados dos clientes?
+
+**Barbeiro:** Quem precisa dessas informações para trabalhar e tem autorização. A recepção usa os dados para organizar o atendimento, e o gerente acompanha a gestão. Não precisa guardar informação pessoal que não tenha utilidade para o serviço.
+
 ---
 
 ## 2. Processos de Negócio
