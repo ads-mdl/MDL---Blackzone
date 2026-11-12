@@ -38,7 +38,7 @@ O estabelecimento atua na prestação de serviços de barbearia e cuidados esté
 
 ### 👥 Equipe e Volume de Atendimentos
 
-| Informação | Caracterização |
+| **Informação** | **Caracterização** |
 | :--- | :--- |
 | **Quantidade de barbeiros** | 7 profissionais |
 | **Demais profissionais** | Recepcionista, responsável pela recepção dos clientes, consulta de agendas e escalas, registro de faltas e vendas de produtos. |
